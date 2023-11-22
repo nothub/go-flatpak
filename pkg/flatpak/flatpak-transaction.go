@@ -112,12 +112,11 @@ func (t TransactionOperationType) String() string {
 //
 // The function takes the following parameters:
 //
-//    - kind: TransactionOperationType.
+//   - kind: TransactionOperationType.
 //
 // The function returns the following values:
 //
-//    - utf8: string representing kind.
-//
+//   - utf8: string representing kind.
 func TransactionOperationTypeToString(kind TransactionOperationType) string {
 	var _arg1 C.FlatpakTransactionOperationType // out
 	var _cret *C.char                           // in
@@ -251,55 +250,55 @@ func (t TransactionResult) Has(other TransactionResult) bool {
 type TransactionOverrider interface {
 	// The function takes the following parameters:
 	//
-	//    - reason
-	//    - fromId
-	//    - remoteName
-	//    - url
+	//   - reason
+	//   - fromId
+	//   - remoteName
+	//   - url
 	//
 	// The function returns the following values:
 	//
 	AddNewRemote(reason TransactionRemoteReason, fromId, remoteName, url string) bool
 	// The function takes the following parameters:
 	//
-	//    - remote
-	//    - realm
-	//    - options
-	//    - id
+	//   - remote
+	//   - realm
+	//   - options
+	//   - id
 	//
 	// The function returns the following values:
 	//
 	BasicAuthStart(remote, realm string, options *glib.Variant, id uint) bool
 	// The function takes the following parameters:
 	//
-	//    - ref
-	//    - reason
-	//    - rebase
+	//   - ref
+	//   - reason
+	//   - rebase
 	//
 	EndOfLifed(ref, reason, rebase string)
 	// The function takes the following parameters:
 	//
-	//    - remote
-	//    - authenticatorRef
+	//   - remote
+	//   - authenticatorRef
 	//
 	InstallAuthenticator(remote, authenticatorRef string)
 	// The function takes the following parameters:
 	//
-	//    - operation
-	//    - progress
+	//   - operation
+	//   - progress
 	//
 	NewOperation(operation *TransactionOperation, progress *TransactionProgress)
 	// The function takes the following parameters:
 	//
-	//    - operation
-	//    - commit
-	//    - details
+	//   - operation
+	//   - commit
+	//   - details
 	//
 	OperationDone(operation *TransactionOperation, commit string, details TransactionResult)
 	// The function takes the following parameters:
 	//
-	//    - operation
-	//    - err
-	//    - detail
+	//   - operation
+	//   - err
+	//   - detail
 	//
 	// The function returns the following values:
 	//
@@ -314,8 +313,8 @@ type TransactionOverrider interface {
 	//
 	// During the course of the execution, various signals will get emitted. The
 	// FlatpakTransaction::choose-remote-for-ref and Transaction::add-new-remote
-	// signals may get emitted while resolving operations. Transaction::ready is
-	// emitted when the transaction has been fully resolved, and
+	// signals may get emitted while resolving operations. Transaction::ready
+	// is emitted when the transaction has been fully resolved, and
 	// Transaction::new-operation and Transaction::operation-done are emitted
 	// while the operations are carried out. If an error occurs at any point
 	// during the execution, Transaction::operation-error is emitted.
@@ -324,21 +323,21 @@ type TransactionOverrider interface {
 	//
 	// The function takes the following parameters:
 	//
-	//    - ctx (optional): #GCancellable.
+	//   - ctx (optional): #GCancellable.
 	//
 	Run(ctx context.Context) error
 	// The function takes the following parameters:
 	//
-	//    - options
-	//    - id
+	//   - options
+	//   - id
 	//
 	WebflowDone(options *glib.Variant, id uint)
 	// The function takes the following parameters:
 	//
-	//    - remote
-	//    - url
-	//    - options
-	//    - id
+	//   - remote
+	//   - url
+	//   - options
+	//   - id
 	//
 	// The function returns the following values:
 	//
@@ -738,9 +737,9 @@ func _gotk4_flatpak1_Transaction_ConnectAddNewRemote(arg0 C.gpointer, arg1 C.gin
 	return cret
 }
 
-// ConnectAddNewRemote signal gets emitted if, as part of the transaction, it is
-// required or recommended that a new remote is added, for the reason described
-// in reason.
+// ConnectAddNewRemote signal gets emitted if, as part of the transaction,
+// it is required or recommended that a new remote is added, for the reason
+// described in reason.
 func (self *Transaction) ConnectAddNewRemote(f func(reason TransactionRemoteReason, fromId, suggestedRemoteName, url string) (ok bool)) externglib.SignalHandle {
 	return externglib.ConnectGeneratedClosure(self, "add-new-remote", false, unsafe.Pointer(C._gotk4_flatpak1_Transaction_ConnectAddNewRemote), f)
 }
@@ -785,8 +784,8 @@ func _gotk4_flatpak1_Transaction_ConnectBasicAuthStart(arg0 C.gpointer, arg1 *C.
 }
 
 // ConnectBasicAuthStart signal gets emitted when a basic user/password
-// authentication is needed during the operation. If the caller handles this it
-// should ask the user for the user and password and return TRUE. Once the
+// authentication is needed during the operation. If the caller handles this
+// it should ask the user for the user and password and return TRUE. Once the
 // information is gathered call flatpak_transaction_complete_basic_auth() with
 // it.
 //
@@ -981,8 +980,8 @@ func _gotk4_flatpak1_Transaction_ConnectReady(arg0 C.gpointer, arg1 C.guintptr) 
 }
 
 // ConnectReady signal is emitted when all the refs involved in the operation
-// have been resolved to commits, and the required authentication for all ops is
-// gotten. At this point flatpak_transaction_get_operations() will return all
+// have been resolved to commits, and the required authentication for all ops
+// is gotten. At this point flatpak_transaction_get_operations() will return all
 // the operations that will be executed as part of the transaction.
 func (self *Transaction) ConnectReady(f func() (ok bool)) externglib.SignalHandle {
 	return externglib.ConnectGeneratedClosure(self, "ready", false, unsafe.Pointer(C._gotk4_flatpak1_Transaction_ConnectReady), f)
@@ -1012,8 +1011,8 @@ func _gotk4_flatpak1_Transaction_ConnectReadyPreAuth(arg0 C.gpointer, arg1 C.gui
 
 // ConnectReadyPreAuth signal is emitted when all the refs involved in the
 // transaction have been resolved to commits, but we might not necessarily have
-// asked for authenticaion for all their required operations. This is very
-// similar to the ::ready signal, and you can chose which one (or both) to use
+// asked for authentication for all their required operations. This is very
+// similar to the ::ready signal, and you can choose which one (or both) to use
 // depending on how you want to handle authentication in your user interface.
 //
 // At this point flatpak_transaction_get_operations() will return all the
@@ -1100,9 +1099,9 @@ func _gotk4_flatpak1_Transaction_ConnectWebflowStart(arg0 C.gpointer, arg1 *C.gc
 }
 
 // ConnectWebflowStart signal gets emitted when some kind of user authentication
-// is needed during the operation. If the caller handles this it should show the
-// url in a webbrowser and return TRUE. This will eventually cause the
-// webbrowser to finish the authentication operation and operation will
+// is needed during the operation. If the caller handles this it should
+// show the url in a webbrowser and return TRUE. This will eventually cause
+// the webbrowser to finish the authentication operation and operation will
 // continue, as signaled by the webflow-done being emitted.
 //
 // If the client does not support webflow then return FALSE from this signal (or
@@ -1117,21 +1116,20 @@ func (self *Transaction) ConnectWebflowStart(f func(remote, url string, options 
 	return externglib.ConnectGeneratedClosure(self, "webflow-start", false, unsafe.Pointer(C._gotk4_flatpak1_Transaction_ConnectWebflowStart), f)
 }
 
-// NewTransactionForInstallation creates a new Transaction object that can be
-// used to do installation and updates of multiple refs, as well as their
+// NewTransactionForInstallation creates a new Transaction object that can
+// be used to do installation and updates of multiple refs, as well as their
 // dependencies, in a single operation. Set the options you want on the
 // transaction and add the refs you want to install/update, then start the
 // transaction with flatpak_transaction_run ().
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - installation: Installation.
+//   - ctx (optional): #GCancellable.
+//   - installation: Installation.
 //
 // The function returns the following values:
 //
-//    - transaction or NULL on failure.
-//
+//   - transaction or NULL on failure.
 func NewTransactionForInstallation(ctx context.Context, installation *Installation) (*Transaction, error) {
 	var _arg2 *C.GCancellable        // out
 	var _arg1 *C.FlatpakInstallation // out
@@ -1160,9 +1158,9 @@ func NewTransactionForInstallation(ctx context.Context, installation *Installati
 	return _transaction, _goerr
 }
 
-// AbortWebflow: cancel an ongoing webflow authentication request. This can be
-// call in the time between Transaction::webflow-start returned TRUE, and
-// Transaction::webflow-done is emitted. It will cancel the ongoing
+// AbortWebflow: cancel an ongoing webflow authentication request. This can
+// be call in the time between Transaction::webflow-start returned TRUE,
+// and Transaction::webflow-done is emitted. It will cancel the ongoing
 // authentication operation.
 //
 // This is useful for example if you're showing an authenticaion window with a
@@ -1170,8 +1168,7 @@ func NewTransactionForInstallation(ctx context.Context, installation *Installati
 //
 // The function takes the following parameters:
 //
-//    - id: webflow id, as passed into the webflow-start signal.
-//
+//   - id: webflow id, as passed into the webflow-start signal.
 func (self *Transaction) AbortWebflow(id uint) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.guint               // out
@@ -1199,16 +1196,15 @@ func (self *Transaction) AddDefaultDependencySources() {
 
 // AddDependencySource adds an extra installation as a source for application
 // dependencies. This means that applications can be installed in this
-// transaction relying on runtimes from this additional installation (whereas it
-// would normally install required runtimes that are not installed in the
+// transaction relying on runtimes from this additional installation (whereas
+// it would normally install required runtimes that are not installed in the
 // installation the transaction works on).
 //
 // Also see flatpak_transaction_add_default_dependency_sources().
 //
 // The function takes the following parameters:
 //
-//    - installation: Installation.
-//
+//   - installation: Installation.
 func (self *Transaction) AddDependencySource(installation *Installation) {
 	var _arg0 *C.FlatpakTransaction  // out
 	var _arg1 *C.FlatpakInstallation // out
@@ -1229,11 +1225,10 @@ func (self *Transaction) AddDependencySource(installation *Installation) {
 //
 // The function takes the following parameters:
 //
-//    - remote: name of the remote.
-//    - ref: ref.
-//    - subpaths (optional) to install, or the empty list or NULL to pull all
-//      subpaths.
-//
+//   - remote: name of the remote.
+//   - ref: ref.
+//   - subpaths (optional) to install, or the empty list or NULL to pull all
+//     subpaths.
 func (self *Transaction) AddInstall(remote, ref string, subpaths []string) error {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 *C.char               // out
@@ -1279,10 +1274,9 @@ func (self *Transaction) AddInstall(remote, ref string, subpaths []string) error
 //
 // The function takes the following parameters:
 //
-//    - file that is an flatpak bundle.
-//    - gpgData (optional): GPG key with which to check bundle signatures, or
-//      NULL to use the key embedded in the bundle (if any).
-//
+//   - file that is an flatpak bundle.
+//   - gpgData (optional): GPG key with which to check bundle signatures,
+//     or NULL to use the key embedded in the bundle (if any).
 func (self *Transaction) AddInstallBundle(file gio.Filer, gpgData *glib.Bytes) error {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 *C.GFile              // out
@@ -1314,8 +1308,7 @@ func (self *Transaction) AddInstallBundle(file gio.Filer, gpgData *glib.Bytes) e
 //
 // The function takes the following parameters:
 //
-//    - flatpakrefData: data from a flatpakref file.
-//
+//   - flatpakrefData: data from a flatpakref file.
 func (self *Transaction) AddInstallFlatpakref(flatpakrefData *glib.Bytes) error {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 *C.GBytes             // out
@@ -1344,8 +1337,7 @@ func (self *Transaction) AddInstallFlatpakref(flatpakrefData *glib.Bytes) error 
 //
 // The function takes the following parameters:
 //
-//    - path to a local flatpak repository.
-//
+//   - path to a local flatpak repository.
 func (self *Transaction) AddSideloadRepo(path string) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 *C.char               // out
@@ -1359,12 +1351,12 @@ func (self *Transaction) AddSideloadRepo(path string) {
 	runtime.KeepAlive(path)
 }
 
-// AddUninstall adds uninstalling the given ref to this transaction.
+// AddUninstall adds uninstalling the given ref to this transaction. If the
+// transaction is set to not deploy updates, the request is ignored.
 //
 // The function takes the following parameters:
 //
-//    - ref: ref.
-//
+//   - ref: ref.
 func (self *Transaction) AddUninstall(ref string) error {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 *C.char               // out
@@ -1391,12 +1383,11 @@ func (self *Transaction) AddUninstall(ref string) error {
 //
 // The function takes the following parameters:
 //
-//    - ref: ref.
-//    - subpaths (optional) to install; NULL to use the current set plus the set
-//      of configured languages, or { NULL } or { "", NULL } to pull all
-//      subpaths.
-//    - commit (optional) to update to, or NULL to use the latest.
-//
+//   - ref: ref.
+//   - subpaths (optional) to install; NULL to use the current set plus the
+//     set of configured languages, or { NULL } or { "", NULL } to pull all
+//     subpaths.
+//   - commit (optional) to update to, or NULL to use the latest.
 func (self *Transaction) AddUpdate(ref string, subpaths []string, commit string) error {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 *C.char               // out
@@ -1444,11 +1435,10 @@ func (self *Transaction) AddUpdate(ref string, subpaths []string, commit string)
 //
 // The function takes the following parameters:
 //
-//    - id: webflow id, as passed into the webflow-start signal.
-//    - user name, or NULL if aborting request.
-//    - password: password.
-//    - options: extra a{sv] variant with options (or NULL), currently unused.
-//
+//   - id: webflow id, as passed into the webflow-start signal.
+//   - user name, or NULL if aborting request.
+//   - password: password.
+//   - options: extra a{sv] variant with options (or NULL), currently unused.
 func (self *Transaction) CompleteBasicAuth(id uint, user, password string, options *glib.Variant) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.guint               // out
@@ -1472,12 +1462,59 @@ func (self *Transaction) CompleteBasicAuth(id uint, user, password string, optio
 	runtime.KeepAlive(options)
 }
 
+// AutoInstallDebug gets the value set by
+// flatpak_transaction_set_auto_install_debug().
+//
+// The function returns the following values:
+//
+//   - ok: TRUE if auto_install_debug is set, FALSE otherwise.
+func (self *Transaction) AutoInstallDebug() bool {
+	var _arg0 *C.FlatpakTransaction // out
+	var _cret C.gboolean            // in
+
+	_arg0 = (*C.FlatpakTransaction)(unsafe.Pointer(externglib.InternObject(self).Native()))
+
+	_cret = C.flatpak_transaction_get_auto_install_debug(_arg0)
+	runtime.KeepAlive(self)
+
+	var _ok bool // out
+
+	if _cret != 0 {
+		_ok = true
+	}
+
+	return _ok
+}
+
+// AutoInstallSdk gets the value set by
+// flatpak_transaction_set_auto_install_sdk().
+//
+// The function returns the following values:
+//
+//   - ok: TRUE if auto_install_sdk is set, FALSE otherwise.
+func (self *Transaction) AutoInstallSdk() bool {
+	var _arg0 *C.FlatpakTransaction // out
+	var _cret C.gboolean            // in
+
+	_arg0 = (*C.FlatpakTransaction)(unsafe.Pointer(externglib.InternObject(self).Native()))
+
+	_cret = C.flatpak_transaction_get_auto_install_sdk(_arg0)
+	runtime.KeepAlive(self)
+
+	var _ok bool // out
+
+	if _cret != 0 {
+		_ok = true
+	}
+
+	return _ok
+}
+
 // CurrentOperation gets the current operation.
 //
 // The function returns the following values:
 //
-//    - transactionOperation: current TransactionOperation.
-//
+//   - transactionOperation: current TransactionOperation.
 func (self *Transaction) CurrentOperation() *TransactionOperation {
 	var _arg0 *C.FlatpakTransaction          // out
 	var _cret *C.FlatpakTransactionOperation // in
@@ -1499,8 +1536,7 @@ func (self *Transaction) CurrentOperation() *TransactionOperation {
 //
 // The function returns the following values:
 //
-//    - ok: TRUE if include_unused_uninstall_ops is set, FALSE otherwise.
-//
+//   - ok: TRUE if include_unused_uninstall_ops is set, FALSE otherwise.
 func (self *Transaction) IncludeUnusedUninstallOps() bool {
 	var _arg0 *C.FlatpakTransaction // out
 	var _cret C.gboolean            // in
@@ -1523,8 +1559,7 @@ func (self *Transaction) IncludeUnusedUninstallOps() bool {
 //
 // The function returns the following values:
 //
-//    - installation: Installation.
-//
+//   - installation: Installation.
 func (self *Transaction) Installation() *Installation {
 	var _arg0 *C.FlatpakTransaction  // out
 	var _cret *C.FlatpakInstallation // in
@@ -1546,8 +1581,7 @@ func (self *Transaction) Installation() *Installation {
 //
 // The function returns the following values:
 //
-//    - ok: TRUE if no_deploy is set, FALSE otherwise.
-//
+//   - ok: TRUE if no_deploy is set, FALSE otherwise.
 func (self *Transaction) NoDeploy() bool {
 	var _arg0 *C.FlatpakTransaction // out
 	var _cret C.gboolean            // in
@@ -1566,13 +1600,36 @@ func (self *Transaction) NoDeploy() bool {
 	return _ok
 }
 
+// NoInteraction gets whether the transaction is interactive. See
+// flatpak_transaction_set_no_interaction().
+//
+// The function returns the following values:
+//
+//   - ok: TRUE if the transaction is not interactive, FALSE otherwise.
+func (self *Transaction) NoInteraction() bool {
+	var _arg0 *C.FlatpakTransaction // out
+	var _cret C.gboolean            // in
+
+	_arg0 = (*C.FlatpakTransaction)(unsafe.Pointer(externglib.InternObject(self).Native()))
+
+	_cret = C.flatpak_transaction_get_no_interaction(_arg0)
+	runtime.KeepAlive(self)
+
+	var _ok bool // out
+
+	if _cret != 0 {
+		_ok = true
+	}
+
+	return _ok
+}
+
 // NoPull gets whether the transaction should operate only on locally available
 // data.
 //
 // The function returns the following values:
 //
-//    - ok: TRUE if no_pull is set, FALSE otherwise.
-//
+//   - ok: TRUE if no_pull is set, FALSE otherwise.
 func (self *Transaction) NoPull() bool {
 	var _arg0 *C.FlatpakTransaction // out
 	var _cret C.gboolean            // in
@@ -1596,8 +1653,7 @@ func (self *Transaction) NoPull() bool {
 //
 // The function returns the following values:
 //
-//    - list of operations.
-//
+//   - list of operations.
 func (self *Transaction) Operations() []*TransactionOperation {
 	var _arg0 *C.FlatpakTransaction // out
 	var _cret *C.GList              // in
@@ -1625,8 +1681,7 @@ func (self *Transaction) Operations() []*TransactionOperation {
 //
 // The function returns the following values:
 //
-//    - utf8: window name, or NULL.
-//
+//   - utf8: window name, or NULL.
 func (self *Transaction) ParentWindow() string {
 	var _arg0 *C.FlatpakTransaction // out
 	var _cret *C.char               // in
@@ -1647,8 +1702,7 @@ func (self *Transaction) ParentWindow() string {
 //
 // The function returns the following values:
 //
-//    - ok: TRUE if the transaction is empty.
-//
+//   - ok: TRUE if the transaction is empty.
 func (self *Transaction) IsEmpty() bool {
 	var _arg0 *C.FlatpakTransaction // out
 	var _cret C.gboolean            // in
@@ -1669,10 +1723,10 @@ func (self *Transaction) IsEmpty() bool {
 
 // Run executes the transaction.
 //
-// During the course of the execution, various signals will get emitted. The
-// FlatpakTransaction::choose-remote-for-ref and Transaction::add-new-remote
-// signals may get emitted while resolving operations. Transaction::ready is
-// emitted when the transaction has been fully resolved, and
+// During the course of the execution, various signals will get emitted.
+// The FlatpakTransaction::choose-remote-for-ref and Transaction::add-new-remote
+// signals may get emitted while resolving operations. Transaction::ready
+// is emitted when the transaction has been fully resolved, and
 // Transaction::new-operation and Transaction::operation-done are emitted while
 // the operations are carried out. If an error occurs at any point during the
 // execution, Transaction::operation-error is emitted.
@@ -1681,8 +1735,7 @@ func (self *Transaction) IsEmpty() bool {
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//
+//   - ctx (optional): #GCancellable.
 func (transaction *Transaction) Run(ctx context.Context) error {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 *C.GCancellable       // out
@@ -1708,12 +1761,53 @@ func (transaction *Transaction) Run(ctx context.Context) error {
 	return _goerr
 }
 
+// SetAutoInstallDebug: when this is set to TRUE, Flatpak will automatically
+// install the debug info for each app currently being installed or updated,
+// as well as its dependencies. Does nothing if an uninstall is taking place.
+//
+// The function takes the following parameters:
+//
+//   - autoInstallDebug: whether to auto install debug info for apps.
+func (self *Transaction) SetAutoInstallDebug(autoInstallDebug bool) {
+	var _arg0 *C.FlatpakTransaction // out
+	var _arg1 C.gboolean            // out
+
+	_arg0 = (*C.FlatpakTransaction)(unsafe.Pointer(externglib.InternObject(self).Native()))
+	if autoInstallDebug {
+		_arg1 = C.TRUE
+	}
+
+	C.flatpak_transaction_set_auto_install_debug(_arg0, _arg1)
+	runtime.KeepAlive(self)
+	runtime.KeepAlive(autoInstallDebug)
+}
+
+// SetAutoInstallSdk: when this is set to TRUE, Flatpak will automatically
+// install the SDK for each app currently being installed or updated. Does
+// nothing if an uninstall is taking place.
+//
+// The function takes the following parameters:
+//
+//   - autoInstallSdk: whether to auto install SDKs for apps.
+func (self *Transaction) SetAutoInstallSdk(autoInstallSdk bool) {
+	var _arg0 *C.FlatpakTransaction // out
+	var _arg1 C.gboolean            // out
+
+	_arg0 = (*C.FlatpakTransaction)(unsafe.Pointer(externglib.InternObject(self).Native()))
+	if autoInstallSdk {
+		_arg1 = C.TRUE
+	}
+
+	C.flatpak_transaction_set_auto_install_sdk(_arg0, _arg1)
+	runtime.KeepAlive(self)
+	runtime.KeepAlive(autoInstallSdk)
+}
+
 // SetDefaultArch sets the architecture to default to where it is unspecified.
 //
 // The function takes the following parameters:
 //
-//    - arch to make default.
-//
+//   - arch to make default.
 func (self *Transaction) SetDefaultArch(arch string) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 *C.char               // out
@@ -1733,8 +1827,7 @@ func (self *Transaction) SetDefaultArch(arch string) {
 //
 // The function takes the following parameters:
 //
-//    - disablePin: whether to disable auto-pinning.
-//
+//   - disablePin: whether to disable auto-pinning.
 func (self *Transaction) SetDisableAutoPIN(disablePin bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -1754,8 +1847,7 @@ func (self *Transaction) SetDisableAutoPIN(disablePin bool) {
 //
 // The function takes the following parameters:
 //
-//    - disableDependencies: whether to disable runtime dependencies.
-//
+//   - disableDependencies: whether to disable runtime dependencies.
 func (self *Transaction) SetDisableDependencies(disableDependencies bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -1775,8 +1867,7 @@ func (self *Transaction) SetDisableDependencies(disableDependencies bool) {
 //
 // The function takes the following parameters:
 //
-//    - disablePrune: whether to avoid pruning.
-//
+//   - disablePrune: whether to avoid pruning.
 func (self *Transaction) SetDisablePrune(disablePrune bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -1797,8 +1888,7 @@ func (self *Transaction) SetDisablePrune(disablePrune bool) {
 //
 // The function takes the following parameters:
 //
-//    - disableRelated: whether to avoid adding related refs.
-//
+//   - disableRelated: whether to avoid adding related refs.
 func (self *Transaction) SetDisableRelated(disableRelated bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -1818,8 +1908,7 @@ func (self *Transaction) SetDisableRelated(disableRelated bool) {
 //
 // The function takes the following parameters:
 //
-//    - disableStaticDeltas: whether to avoid static deltas.
-//
+//   - disableStaticDeltas: whether to avoid static deltas.
 func (self *Transaction) SetDisableStaticDeltas(disableStaticDeltas bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -1839,8 +1928,7 @@ func (self *Transaction) SetDisableStaticDeltas(disableStaticDeltas bool) {
 //
 // The function takes the following parameters:
 //
-//    - forceUninstall: whether to force-uninstall refs.
-//
+//   - forceUninstall: whether to force-uninstall refs.
 func (self *Transaction) SetForceUninstall(forceUninstall bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -1860,15 +1948,14 @@ func (self *Transaction) SetForceUninstall(forceUninstall bool) {
 // This is used by the "update" CLI command to garbage collect runtimes and free
 // disk space.
 //
-// No guarantees are made about the exact hueristic used; e.g. only end-of-life
-// unused runtimes may be uninstalled with this set. To see the full list of
-// unused runtimes in an installation, use
+// No guarantees are made about the exact hueristic used; e.g.
+// only end-of-life unused runtimes may be uninstalled with this set.
+// To see the full list of unused runtimes in an installation, use
 // flatpak_installation_list_unused_refs().
 //
 // The function takes the following parameters:
 //
-//    - includeUnusedUninstallOps: whether to include unused uninstall ops.
-//
+//   - includeUnusedUninstallOps: whether to include unused uninstall ops.
 func (self *Transaction) SetIncludeUnusedUninstallOps(includeUnusedUninstallOps bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -1888,8 +1975,7 @@ func (self *Transaction) SetIncludeUnusedUninstallOps(includeUnusedUninstallOps 
 //
 // The function takes the following parameters:
 //
-//    - noDeploy: whether to avoid deploying.
-//
+//   - noDeploy: whether to avoid deploying.
 func (self *Transaction) SetNoDeploy(noDeploy bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -1912,9 +1998,8 @@ func (self *Transaction) SetNoDeploy(noDeploy bool) {
 //
 // The function takes the following parameters:
 //
-//    - noInteraction: whether to disallow interactive authorization for
-//      operations.
-//
+//   - noInteraction: whether to disallow interactive authorization for
+//     operations.
 func (self *Transaction) SetNoInteraction(noInteraction bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -1934,8 +2019,7 @@ func (self *Transaction) SetNoInteraction(noInteraction bool) {
 //
 // The function takes the following parameters:
 //
-//    - noPull: whether to avoid pulls.
-//
+//   - noPull: whether to avoid pulls.
 func (self *Transaction) SetNoPull(noPull bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -1965,8 +2049,7 @@ func (self *Transaction) SetNoPull(noPull bool) {
 //
 // The function takes the following parameters:
 //
-//    - parentWindow: whether to avoid pulls.
-//
+//   - parentWindow: whether to avoid pulls.
 func (self *Transaction) SetParentWindow(parentWindow string) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 *C.char               // out
@@ -1985,8 +2068,7 @@ func (self *Transaction) SetParentWindow(parentWindow string) {
 //
 // The function takes the following parameters:
 //
-//    - reinstall: whether to reinstall refs.
-//
+//   - reinstall: whether to reinstall refs.
 func (self *Transaction) SetReinstall(reinstall bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -2036,8 +2118,7 @@ func marshalTransactionOperation(p uintptr) (interface{}, error) {
 //
 // The function returns the following values:
 //
-//    - file: bundle #GFile or NULL.
-//
+//   - file: bundle #GFile or NULL.
 func (self *TransactionOperation) BundlePath() *gio.File {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret *C.GFile                       // in
@@ -2066,8 +2147,7 @@ func (self *TransactionOperation) BundlePath() *gio.File {
 //
 // The function returns the following values:
 //
-//    - utf8: commit ID.
-//
+//   - utf8: commit ID.
 func (self *TransactionOperation) Commit() string {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret *C.char                        // in
@@ -2096,8 +2176,7 @@ func (self *TransactionOperation) Commit() string {
 //
 // The function returns the following values:
 //
-//    - guint64: download size, in bytes.
-//
+//   - guint64: download size, in bytes.
 func (self *TransactionOperation) DownloadSize() uint64 {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret C.guint64                      // in
@@ -2126,8 +2205,7 @@ func (self *TransactionOperation) DownloadSize() uint64 {
 //
 // The function returns the following values:
 //
-//    - guint64: installed size, in bytes.
-//
+//   - guint64: installed size, in bytes.
 func (self *TransactionOperation) InstalledSize() uint64 {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret C.guint64                      // in
@@ -2144,18 +2222,17 @@ func (self *TransactionOperation) InstalledSize() uint64 {
 	return _guint64
 }
 
-// IsSkipped gets whether this operation will be skipped when the transaction is
-// run. Operations are skipped in some transaction situations, for example when
-// an app has reached end of life and needs a rebase, or when it would have been
-// updated but no update is available. By default, skipped operations are not
-// returned by flatpak_transaction_get_operations() — but they can be accessed
-// by traversing the operation graph using
+// IsSkipped gets whether this operation will be skipped when the transaction
+// is run. Operations are skipped in some transaction situations,
+// for example when an app has reached end of life and needs a rebase,
+// or when it would have been updated but no update is available. By default,
+// skipped operations are not returned by flatpak_transaction_get_operations()
+// — but they can be accessed by traversing the operation graph using
 // flatpak_transaction_operation_get_related_to_ops().
 //
 // The function returns the following values:
 //
-//    - ok: TRUE if the operation has been marked as to skip, FALSE otherwise.
-//
+//   - ok: TRUE if the operation has been marked as to skip, FALSE otherwise.
 func (self *TransactionOperation) IsSkipped() bool {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret C.gboolean                     // in
@@ -2186,8 +2263,7 @@ func (self *TransactionOperation) IsSkipped() bool {
 //
 // The function returns the following values:
 //
-//    - keyFile: metadata File.
-//
+//   - keyFile: metadata File.
 func (self *TransactionOperation) Metadata() *glib.KeyFile {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret *C.GKeyFile                    // in
@@ -2212,8 +2288,7 @@ func (self *TransactionOperation) Metadata() *glib.KeyFile {
 //
 // The function returns the following values:
 //
-//    - keyFile: old metadata File.
-//
+//   - keyFile: old metadata File.
 func (self *TransactionOperation) OldMetadata() *glib.KeyFile {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret *C.GKeyFile                    // in
@@ -2234,8 +2309,7 @@ func (self *TransactionOperation) OldMetadata() *glib.KeyFile {
 //
 // The function returns the following values:
 //
-//    - transactionOperationType: type of operation, as TransactionOperationType.
-//
+//   - transactionOperationType: type of operation, as TransactionOperationType.
 func (self *TransactionOperation) OperationType() TransactionOperationType {
 	var _arg0 *C.FlatpakTransactionOperation    // out
 	var _cret C.FlatpakTransactionOperationType // in
@@ -2256,8 +2330,7 @@ func (self *TransactionOperation) OperationType() TransactionOperationType {
 //
 // The function returns the following values:
 //
-//    - utf8: remote.
-//
+//   - utf8: remote.
 func (self *TransactionOperation) Remote() string {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret *C.char                        // in
@@ -2280,8 +2353,7 @@ func (self *TransactionOperation) Remote() string {
 //
 // The function returns the following values:
 //
-//    - ok: whether self requires authentication.
-//
+//   - ok: whether self requires authentication.
 func (self *TransactionOperation) RequiresAuthentication() bool {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret C.gboolean                     // in
@@ -2316,8 +2388,7 @@ func (self *TransactionOperation) RequiresAuthentication() bool {
 //
 // The function returns the following values:
 //
-//    - utf8s: set of subpaths that will be pulled, or NULL if no subsetting.
-//
+//   - utf8s: set of subpaths that will be pulled, or NULL if no subsetting.
 func (self *TransactionOperation) Subpaths() []string {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret **C.char                       // in
@@ -2403,8 +2474,7 @@ func (self *TransactionProgress) ConnectChanged(f func()) externglib.SignalHandl
 //
 // The function returns the following values:
 //
-//    - guint64: number of bytes transferred.
-//
+//   - guint64: number of bytes transferred.
 func (self *TransactionProgress) BytesTransferred() uint64 {
 	var _arg0 *C.FlatpakTransactionProgress // out
 	var _cret C.guint64                     // in
@@ -2425,8 +2495,7 @@ func (self *TransactionProgress) BytesTransferred() uint64 {
 //
 // The function returns the following values:
 //
-//    - ok: whether we're estimating.
-//
+//   - ok: whether we're estimating.
 func (self *TransactionProgress) IsEstimating() bool {
 	var _arg0 *C.FlatpakTransactionProgress // out
 	var _cret C.gboolean                    // in
@@ -2449,8 +2518,7 @@ func (self *TransactionProgress) IsEstimating() bool {
 //
 // The function returns the following values:
 //
-//    - gint: current progress, as an integer between 0 and 100.
-//
+//   - gint: current progress, as an integer between 0 and 100.
 func (self *TransactionProgress) Progress() int {
 	var _arg0 *C.FlatpakTransactionProgress // out
 	var _cret C.int                         // in
@@ -2472,8 +2540,7 @@ func (self *TransactionProgress) Progress() int {
 //
 // The function returns the following values:
 //
-//    - guint64: start time.
-//
+//   - guint64: start time.
 func (self *TransactionProgress) StartTime() uint64 {
 	var _arg0 *C.FlatpakTransactionProgress // out
 	var _cret C.guint64                     // in
@@ -2494,8 +2561,7 @@ func (self *TransactionProgress) StartTime() uint64 {
 //
 // The function returns the following values:
 //
-//    - utf8: current status.
-//
+//   - utf8: current status.
 func (self *TransactionProgress) Status() string {
 	var _arg0 *C.FlatpakTransactionProgress // out
 	var _cret *C.char                       // in
@@ -2517,8 +2583,7 @@ func (self *TransactionProgress) Status() string {
 //
 // The function takes the following parameters:
 //
-//    - updateInterval: update interval, in milliseconds.
-//
+//   - updateInterval: update interval, in milliseconds.
 func (self *TransactionProgress) SetUpdateFrequency(updateInterval uint) {
 	var _arg0 *C.FlatpakTransactionProgress // out
 	var _arg1 C.guint                       // out

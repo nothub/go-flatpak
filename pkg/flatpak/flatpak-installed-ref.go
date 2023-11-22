@@ -61,15 +61,14 @@ func marshalInstalledRef(p uintptr) (interface{}, error) {
 	return wrapInstalledRef(externglib.ValueFromNative(unsafe.Pointer(p)).Object()), nil
 }
 
-// AppdataContentRating returns the content rating field from the appdata. This
-// is a potentially empty mapping of content rating attribute IDs to values, to
-// be interpreted by the semantics of the content rating type (see
+// AppdataContentRating returns the content rating field from the appdata.
+// This is a potentially empty mapping of content rating attribute IDs to
+// values, to be interpreted by the semantics of the content rating type (see
 // flatpak_installed_ref_get_appdata_content_rating_type()).
 //
 // The function returns the following values:
 //
-//    - hashTable (optional): content rating or NULL.
-//
+//   - hashTable (optional): content rating or NULL.
 func (self *InstalledRef) AppdataContentRating() map[string]string {
 	var _arg0 *C.FlatpakInstalledRef // out
 	var _cret *C.GHashTable          // in
@@ -102,8 +101,7 @@ func (self *InstalledRef) AppdataContentRating() map[string]string {
 //
 // The function returns the following values:
 //
-//    - utf8 (optional): content rating type or NULL.
-//
+//   - utf8 (optional): content rating type or NULL.
 func (self *InstalledRef) AppdataContentRatingType() string {
 	var _arg0 *C.FlatpakInstalledRef // out
 	var _cret *C.char                // in
@@ -126,8 +124,7 @@ func (self *InstalledRef) AppdataContentRatingType() string {
 //
 // The function returns the following values:
 //
-//    - utf8: license or NULL.
-//
+//   - utf8: license or NULL.
 func (self *InstalledRef) AppdataLicense() string {
 	var _arg0 *C.FlatpakInstalledRef // out
 	var _cret *C.char                // in
@@ -150,8 +147,7 @@ func (self *InstalledRef) AppdataLicense() string {
 //
 // The function returns the following values:
 //
-//    - utf8: name or NULL.
-//
+//   - utf8: name or NULL.
 func (self *InstalledRef) AppdataName() string {
 	var _arg0 *C.FlatpakInstalledRef // out
 	var _cret *C.char                // in
@@ -174,8 +170,7 @@ func (self *InstalledRef) AppdataName() string {
 //
 // The function returns the following values:
 //
-//    - utf8: summary or NULL.
-//
+//   - utf8: summary or NULL.
 func (self *InstalledRef) AppdataSummary() string {
 	var _arg0 *C.FlatpakInstalledRef // out
 	var _cret *C.char                // in
@@ -196,8 +191,7 @@ func (self *InstalledRef) AppdataSummary() string {
 //
 // The function returns the following values:
 //
-//    - utf8: version or NULL.
-//
+//   - utf8: version or NULL.
 func (self *InstalledRef) AppdataVersion() string {
 	var _arg0 *C.FlatpakInstalledRef // out
 	var _cret *C.char                // in
@@ -218,8 +212,7 @@ func (self *InstalledRef) AppdataVersion() string {
 //
 // The function returns the following values:
 //
-//    - utf8: deploy dir.
-//
+//   - utf8: deploy dir.
 func (self *InstalledRef) DeployDir() string {
 	var _arg0 *C.FlatpakInstalledRef // out
 	var _cret *C.char                // in
@@ -241,8 +234,7 @@ func (self *InstalledRef) DeployDir() string {
 //
 // The function returns the following values:
 //
-//    - utf8: end-of-life reason or NULL.
-//
+//   - utf8: end-of-life reason or NULL.
 func (self *InstalledRef) Eol() string {
 	var _arg0 *C.FlatpakInstalledRef // out
 	var _cret *C.char                // in
@@ -264,8 +256,7 @@ func (self *InstalledRef) Eol() string {
 //
 // The function returns the following values:
 //
-//    - utf8: end-of-life rebased ref or NULL.
-//
+//   - utf8: end-of-life rebased ref or NULL.
 func (self *InstalledRef) EolRebase() string {
 	var _arg0 *C.FlatpakInstalledRef // out
 	var _cret *C.char                // in
@@ -286,8 +277,7 @@ func (self *InstalledRef) EolRebase() string {
 //
 // The function returns the following values:
 //
-//    - guint64: installed size.
-//
+//   - guint64: installed size.
 func (self *InstalledRef) InstalledSize() uint64 {
 	var _arg0 *C.FlatpakInstalledRef // out
 	var _cret C.guint64              // in
@@ -308,8 +298,7 @@ func (self *InstalledRef) InstalledSize() uint64 {
 //
 // The function returns the following values:
 //
-//    - ok: TRUE if the ref is current.
-//
+//   - ok: TRUE if the ref is current.
 func (self *InstalledRef) IsCurrent() bool {
 	var _arg0 *C.FlatpakInstalledRef // out
 	var _cret C.gboolean             // in
@@ -332,8 +321,7 @@ func (self *InstalledRef) IsCurrent() bool {
 //
 // The function returns the following values:
 //
-//    - utf8 (optional): latest commit.
-//
+//   - utf8 (optional): latest commit.
 func (self *InstalledRef) LatestCommit() string {
 	var _arg0 *C.FlatpakInstalledRef // out
 	var _cret *C.char                // in
@@ -356,8 +344,7 @@ func (self *InstalledRef) LatestCommit() string {
 //
 // The function returns the following values:
 //
-//    - utf8: origin.
-//
+//   - utf8: origin.
 func (self *InstalledRef) Origin() string {
 	var _arg0 *C.FlatpakInstalledRef // out
 	var _cret *C.char                // in
@@ -379,8 +366,7 @@ func (self *InstalledRef) Origin() string {
 //
 // The function returns the following values:
 //
-//    - utf8s: strv, or NULL.
-//
+//   - utf8s: strv, or NULL.
 func (self *InstalledRef) Subpaths() []string {
 	var _arg0 *C.FlatpakInstalledRef // out
 	var _cret **C.char               // in
@@ -413,13 +399,12 @@ func (self *InstalledRef) Subpaths() []string {
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
+//   - ctx (optional): #GCancellable.
 //
 // The function returns the following values:
 //
-//    - bytes containing the compressed appdata file, or NULL if an error
-//      occurred.
-//
+//   - bytes containing the compressed appdata file, or NULL if an error
+//     occurred.
 func (self *InstalledRef) LoadAppdata(ctx context.Context) (*glib.Bytes, error) {
 	var _arg0 *C.FlatpakInstalledRef // out
 	var _arg1 *C.GCancellable        // out
@@ -458,12 +443,11 @@ func (self *InstalledRef) LoadAppdata(ctx context.Context) (*glib.Bytes, error) 
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
+//   - ctx (optional): #GCancellable.
 //
 // The function returns the following values:
 //
-//    - bytes containing the metadata file, or NULL if an error occurred.
-//
+//   - bytes containing the metadata file, or NULL if an error occurred.
 func (self *InstalledRef) LoadMetadata(ctx context.Context) (*glib.Bytes, error) {
 	var _arg0 *C.FlatpakInstalledRef // out
 	var _arg1 *C.GCancellable        // out

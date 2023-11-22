@@ -64,12 +64,11 @@ func marshalBundleRef(p uintptr) (interface{}, error) {
 //
 // The function takes the following parameters:
 //
-//    - file: #GFile.
+//   - file: #GFile.
 //
 // The function returns the following values:
 //
-//    - bundleRef: new bundle ref.
-//
+//   - bundleRef: new bundle ref.
 func NewBundleRef(file gio.Filer) (*BundleRef, error) {
 	var _arg1 *C.GFile            // out
 	var _cret *C.FlatpakBundleRef // in
@@ -95,8 +94,7 @@ func NewBundleRef(file gio.Filer) (*BundleRef, error) {
 //
 // The function returns the following values:
 //
-//    - bytes with the appstream contents, or NULL.
-//
+//   - bytes with the appstream contents, or NULL.
 func (self *BundleRef) Appstream() *glib.Bytes {
 	var _arg0 *C.FlatpakBundleRef // out
 	var _cret *C.GBytes           // in
@@ -123,8 +121,7 @@ func (self *BundleRef) Appstream() *glib.Bytes {
 //
 // The function returns the following values:
 //
-//    - file: #GFile.
-//
+//   - file: #GFile.
 func (self *BundleRef) File() *gio.File {
 	var _arg0 *C.FlatpakBundleRef // out
 	var _cret *C.GFile            // in
@@ -150,12 +147,11 @@ func (self *BundleRef) File() *gio.File {
 //
 // The function takes the following parameters:
 //
-//    - size: 64 or 128.
+//   - size: 64 or 128.
 //
 // The function returns the following values:
 //
-//    - bytes with png contents.
-//
+//   - bytes with png contents.
 func (self *BundleRef) Icon(size int) *glib.Bytes {
 	var _arg0 *C.FlatpakBundleRef // out
 	var _arg1 C.int               // out
@@ -185,8 +181,7 @@ func (self *BundleRef) Icon(size int) *glib.Bytes {
 //
 // The function returns the following values:
 //
-//    - guint64: installed size.
-//
+//   - guint64: installed size.
 func (self *BundleRef) InstalledSize() uint64 {
 	var _arg0 *C.FlatpakBundleRef // out
 	var _cret C.guint64           // in
@@ -207,8 +202,7 @@ func (self *BundleRef) InstalledSize() uint64 {
 //
 // The function returns the following values:
 //
-//    - bytes with the metadata contents, or NULL.
-//
+//   - bytes with the metadata contents, or NULL.
 func (self *BundleRef) Metadata() *glib.Bytes {
 	var _arg0 *C.FlatpakBundleRef // out
 	var _cret *C.GBytes           // in
@@ -235,8 +229,7 @@ func (self *BundleRef) Metadata() *glib.Bytes {
 //
 // The function returns the following values:
 //
-//    - utf8: url string, or NULL.
-//
+//   - utf8: url string, or NULL.
 func (self *BundleRef) Origin() string {
 	var _arg0 *C.FlatpakBundleRef // out
 	var _cret *C.char             // in
@@ -259,8 +252,7 @@ func (self *BundleRef) Origin() string {
 //
 // The function returns the following values:
 //
-//    - utf8: url string, or NULL.
-//
+//   - utf8: url string, or NULL.
 func (self *BundleRef) RuntimeRepoURL() string {
 	var _arg0 *C.FlatpakBundleRef // out
 	var _cret *C.char             // in

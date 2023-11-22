@@ -61,8 +61,7 @@ func marshalRelatedRef(p uintptr) (interface{}, error) {
 //
 // The function returns the following values:
 //
-//    - utf8s: strv, or NULL.
-//
+//   - utf8s: strv, or NULL.
 func (self *RelatedRef) Subpaths() []string {
 	var _arg0 *C.FlatpakRelatedRef // out
 	var _cret **C.char             // in
@@ -95,8 +94,7 @@ func (self *RelatedRef) Subpaths() []string {
 //
 // The function returns the following values:
 //
-//    - ok: TRUE if the ref should be considered unused when pruning.
-//
+//   - ok: TRUE if the ref should be considered unused when pruning.
 func (self *RelatedRef) ShouldAutoprune() bool {
 	var _arg0 *C.FlatpakRelatedRef // out
 	var _cret C.gboolean           // in
@@ -119,8 +117,7 @@ func (self *RelatedRef) ShouldAutoprune() bool {
 //
 // The function returns the following values:
 //
-//    - ok: TRUE if the ref should be deleted with the main ref.
-//
+//   - ok: TRUE if the ref should be deleted with the main ref.
 func (self *RelatedRef) ShouldDelete() bool {
 	var _arg0 *C.FlatpakRelatedRef // out
 	var _cret C.gboolean           // in
@@ -143,8 +140,7 @@ func (self *RelatedRef) ShouldDelete() bool {
 //
 // The function returns the following values:
 //
-//    - ok: TRUE if the ref should be downloaded with the main ref.
-//
+//   - ok: TRUE if the ref should be downloaded with the main ref.
 func (self *RelatedRef) ShouldDownload() bool {
 	var _arg0 *C.FlatpakRelatedRef // out
 	var _cret C.gboolean           // in

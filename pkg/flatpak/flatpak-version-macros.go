@@ -10,7 +10,7 @@ import "C"
 const MAJOR_VERSION = 1
 
 // MICRO_VERSION: micro version.
-const MICRO_VERSION = 7
+const MICRO_VERSION = 4
 
 // MINOR_VERSION: minor version.
-const MINOR_VERSION = 12
+const MINOR_VERSION = 14

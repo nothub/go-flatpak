@@ -85,8 +85,8 @@ const (
 	// ErrorAuthenticationFailed: authentication operation failed, for example,
 	// no correct password was supplied. (Since: 1.7.3).
 	ErrorAuthenticationFailed
-	// ErrorNotAuthorized: operation tried to access a ref, or information about
-	// it that it was not authorized. For example, when succesfully
+	// ErrorNotAuthorized: operation tried to access a ref, or information
+	// about it that it was not authorized. For example, when succesfully
 	// authenticating with a server but the user doesn't have permissions for a
 	// private ref. (Since: 1.7.3).
 	ErrorNotAuthorized

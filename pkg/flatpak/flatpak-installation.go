@@ -266,9 +266,9 @@ const (
 	// UninstallFlagsNoPrune: don't prune the local OSTree repository after
 	// uninstalling.
 	UninstallFlagsNoPrune UninstallFlags = 0b1
-	// UninstallFlagsNoTriggers: don't call triggers after uninstalling. If
-	// used, the caller must later call flatpak_installation_run_triggers() to
-	// update the exported file. (Since: 1.0.3).
+	// UninstallFlagsNoTriggers: don't call triggers after uninstalling.
+	// If used, the caller must later call flatpak_installation_run_triggers()
+	// to update the exported file. (Since: 1.0.3).
 	UninstallFlagsNoTriggers UninstallFlags = 0b10
 )
 
@@ -327,9 +327,9 @@ const (
 	// UpdateFlagsNoPrune: don't prune the local OSTree repository after
 	// updating (Since: 0.11.8).
 	UpdateFlagsNoPrune UpdateFlags = 0b1000
-	// UpdateFlagsNoTriggers: don't call triggers after updating. If used, the
-	// caller must later call flatpak_installation_run_triggers() to update the
-	// exported files. (Since: 1.0.3).
+	// UpdateFlagsNoTriggers: don't call triggers after updating. If used,
+	// the caller must later call flatpak_installation_run_triggers() to update
+	// the exported files. (Since: 1.0.3).
 	UpdateFlagsNoTriggers UpdateFlags = 0b10000
 )
 
@@ -414,8 +414,7 @@ func _gotk4_flatpak1_ProgressCallback(arg1 *C.char, arg2 C.guint, arg3 C.gboolea
 //
 // The function returns the following values:
 //
-//    - utf8: arch string.
-//
+//   - utf8: arch string.
 func GetDefaultArch() string {
 	var _cret *C.char // in
 
@@ -434,8 +433,7 @@ func GetDefaultArch() string {
 //
 // The function returns the following values:
 //
-//    - utf8s: zero terminated array of arch strings.
-//
+//   - utf8s: zero terminated array of arch strings.
 func GetSupportedArches() []string {
 	var _cret **C.char // in
 
@@ -496,14 +494,13 @@ func marshalInstallation(p uintptr) (interface{}, error) {
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - path: #GFile.
-//    - user: whether this is a user-specific location.
+//   - ctx (optional): #GCancellable.
+//   - path: #GFile.
+//   - user: whether this is a user-specific location.
 //
 // The function returns the following values:
 //
-//    - installation: new Installation.
-//
+//   - installation: new Installation.
 func NewInstallationForPath(ctx context.Context, path gio.Filer, user bool) (*Installation, error) {
 	var _arg3 *C.GCancellable        // out
 	var _arg1 *C.GFile               // out
@@ -542,12 +539,11 @@ func NewInstallationForPath(ctx context.Context, path gio.Filer, user bool) (*In
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
+//   - ctx (optional): #GCancellable.
 //
 // The function returns the following values:
 //
-//    - installation: new Installation.
-//
+//   - installation: new Installation.
 func NewInstallationSystem(ctx context.Context) (*Installation, error) {
 	var _arg1 *C.GCancellable        // out
 	var _cret *C.FlatpakInstallation // in
@@ -578,13 +574,12 @@ func NewInstallationSystem(ctx context.Context) (*Installation, error) {
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - id (optional): ID of the system-wide installation.
+//   - ctx (optional): #GCancellable.
+//   - id (optional): ID of the system-wide installation.
 //
 // The function returns the following values:
 //
-//    - installation: new Installation.
-//
+//   - installation: new Installation.
 func NewInstallationSystemWithID(ctx context.Context, id string) (*Installation, error) {
 	var _arg2 *C.GCancellable        // out
 	var _arg1 *C.char                // out
@@ -620,12 +615,11 @@ func NewInstallationSystemWithID(ctx context.Context, id string) (*Installation,
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
+//   - ctx (optional): #GCancellable.
 //
 // The function returns the following values:
 //
-//    - installation: new Installation.
-//
+//   - installation: new Installation.
 func NewInstallationUser(ctx context.Context) (*Installation, error) {
 	var _arg1 *C.GCancellable        // out
 	var _cret *C.FlatpakInstallation // in
@@ -666,10 +660,9 @@ func NewInstallationUser(ctx context.Context) (*Installation, error) {
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - remote: new Remote.
-//    - ifNeeded: if TRUE, only add if it doesn't exists.
-//
+//   - ctx (optional): #GCancellable.
+//   - remote: new Remote.
+//   - ifNeeded: if TRUE, only add if it doesn't exists.
 func (self *Installation) AddRemote(ctx context.Context, remote *Remote, ifNeeded bool) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg3 *C.GCancellable        // out
@@ -704,20 +697,19 @@ func (self *Installation) AddRemote(ctx context.Context, remote *Remote, ifNeede
 }
 
 // CleanupLocalRefsSync: remove all OSTree refs from the local flatpak
-// repository which are not in a deployed state. The next time the underlying
-// OSTree repo is pruned, objects which were attached to that ref will be
-// removed. This is useful if you pulled a flatpak refs using
-// flatpak_installation_install_full() and specified
-// FLATPAK_INSTALL_FLAGS_NO_DEPLOY but then decided not to deploy the refs later
-// on and want to remove the local refs to prevent them from taking up disk
-// space. Note that this will not remove the objects referred to by ref from the
-// underlying OSTree repo, you should use
+// repository which are not in a deployed state. The next time the
+// underlying OSTree repo is pruned, objects which were attached to
+// that ref will be removed. This is useful if you pulled a flatpak
+// refs using flatpak_installation_install_full() and specified
+// FLATPAK_INSTALL_FLAGS_NO_DEPLOY but then decided not to deploy the
+// refs later on and want to remove the local refs to prevent them from
+// taking up disk space. Note that this will not remove the objects
+// referred to by ref from the underlying OSTree repo, you should use
 // flatpak_installation_prune_local_repo() to do that.
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//
+//   - ctx (optional): #GCancellable.
 func (self *Installation) CleanupLocalRefsSync(ctx context.Context) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg1 *C.GCancellable        // out
@@ -749,12 +741,11 @@ func (self *Installation) CleanupLocalRefsSync(ctx context.Context) error {
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
+//   - ctx (optional): #GCancellable.
 //
 // The function returns the following values:
 //
-//    - fileMonitor: new Monitor instance, or NULL on error.
-//
+//   - fileMonitor: new Monitor instance, or NULL on error.
 func (self *Installation) CreateMonitor(ctx context.Context) (gio.FileMonitorrer, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg1 *C.GCancellable        // out
@@ -805,8 +796,7 @@ func (self *Installation) CreateMonitor(ctx context.Context) (gio.FileMonitorrer
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//
+//   - ctx (optional): #GCancellable.
 func (self *Installation) DropCaches(ctx context.Context) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg1 *C.GCancellable        // out
@@ -834,19 +824,18 @@ func (self *Installation) DropCaches(ctx context.Context) error {
 
 // FetchRemoteMetadataSync obtains the metadata file from a commit.
 //
-// NOTE: Since 0.11.4 this information is accessible in FlatpakRemoteRef, so
-// this function is not very useful anymore.
+// NOTE: Since 0.11.4 this information is accessible in FlatpakRemoteRef,
+// so this function is not very useful anymore.
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - remoteName: name of the remote.
-//    - ref: ref.
+//   - ctx (optional): #GCancellable.
+//   - remoteName: name of the remote.
+//   - ref: ref.
 //
 // The function returns the following values:
 //
-//    - bytes containing the flatpak metadata file, or NULL if an error occurred.
-//
+//   - bytes containing the flatpak metadata file, or NULL if an error occurred.
 func (self *Installation) FetchRemoteMetadataSync(ctx context.Context, remoteName string, ref *Ref) (*glib.Bytes, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg3 *C.GCancellable        // out
@@ -892,18 +881,17 @@ func (self *Installation) FetchRemoteMetadataSync(ctx context.Context, remoteNam
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - remoteName: name of the remote.
-//    - kind: what this ref contains (an RefKind).
-//    - name of the app/runtime to fetch.
-//    - arch (optional): which architecture to fetch (default: current
-//      architecture).
-//    - branch (optional): which branch to fetch (default: 'master').
+//   - ctx (optional): #GCancellable.
+//   - remoteName: name of the remote.
+//   - kind: what this ref contains (an RefKind).
+//   - name of the app/runtime to fetch.
+//   - arch (optional): which architecture to fetch (default: current
+//     architecture).
+//   - branch (optional): which branch to fetch (default: 'master').
 //
 // The function returns the following values:
 //
-//    - remoteRef instance, or NULL.
-//
+//   - remoteRef instance, or NULL.
 func (self *Installation) FetchRemoteRefSync(ctx context.Context, remoteName string, kind RefKind, name, arch, branch string) (*RemoteRef, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg6 *C.GCancellable        // out
@@ -959,19 +947,18 @@ func (self *Installation) FetchRemoteRefSync(ctx context.Context, remoteName str
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - remoteName: name of the remote.
-//    - kind: what this ref contains (an RefKind).
-//    - name of the app/runtime to fetch.
-//    - arch (optional): which architecture to fetch (default: current
-//      architecture).
-//    - branch (optional): which branch to fetch (default: 'master').
-//    - flags: set of QueryFlags.
+//   - ctx (optional): #GCancellable.
+//   - remoteName: name of the remote.
+//   - kind: what this ref contains (an RefKind).
+//   - name of the app/runtime to fetch.
+//   - arch (optional): which architecture to fetch (default: current
+//     architecture).
+//   - branch (optional): which branch to fetch (default: 'master').
+//   - flags: set of QueryFlags.
 //
 // The function returns the following values:
 //
-//    - remoteRef instance, or NULL.
-//
+//   - remoteRef instance, or NULL.
 func (self *Installation) FetchRemoteRefSyncFull(ctx context.Context, remoteName string, kind RefKind, name, arch, branch string, flags QueryFlags) (*RemoteRef, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg7 *C.GCancellable        // out
@@ -1034,20 +1021,19 @@ func (self *Installation) FetchRemoteRefSyncFull(ctx context.Context, remoteName
 // common for instance if you're doing an update then the real download size may
 // be smaller than what is returned here.
 //
-// NOTE: Since 0.11.4 this information is accessible in FlatpakRemoteRef, so
-// this function is not very useful anymore.
+// NOTE: Since 0.11.4 this information is accessible in FlatpakRemoteRef,
+// so this function is not very useful anymore.
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - remoteName: name of the remote.
-//    - ref: ref.
+//   - ctx (optional): #GCancellable.
+//   - remoteName: name of the remote.
+//   - ref: ref.
 //
 // The function returns the following values:
 //
-//    - downloadSize: return location for the (maximum) download size.
-//    - installedSize: return location for the installed size.
-//
+//   - downloadSize: return location for the (maximum) download size.
+//   - installedSize: return location for the installed size.
 func (self *Installation) FetchRemoteSizeSync(ctx context.Context, remoteName string, ref *Ref) (downloadSize uint64, installedSize uint64, goerr error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg5 *C.GCancellable        // out
@@ -1091,14 +1077,13 @@ func (self *Installation) FetchRemoteSizeSync(ctx context.Context, remoteName st
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - key: name of the key to get.
+//   - ctx (optional): #GCancellable.
+//   - key: name of the key to get.
 //
 // The function returns the following values:
 //
-//    - utf8: (newly allocated) value, or NULL on error
-//      (G_KEY_FILE_ERROR_KEY_NOT_FOUND error if key is not set).
-//
+//   - utf8: (newly allocated) value, or NULL on error
+//     (G_KEY_FILE_ERROR_KEY_NOT_FOUND error if key is not set).
 func (self *Installation) Config(ctx context.Context, key string) (string, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg2 *C.GCancellable        // out
@@ -1138,13 +1123,12 @@ func (self *Installation) Config(ctx context.Context, key string) (string, error
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - name of the app.
+//   - ctx (optional): #GCancellable.
+//   - name of the app.
 //
 // The function returns the following values:
 //
-//    - installedRef: InstalledRef.
-//
+//   - installedRef: InstalledRef.
 func (self *Installation) CurrentInstalledApp(ctx context.Context, name string) (*InstalledRef, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg2 *C.GCancellable        // out
@@ -1184,8 +1168,7 @@ func (self *Installation) CurrentInstalledApp(ctx context.Context, name string) 
 //
 // The function returns the following values:
 //
-//    - utf8s: A possibly empty array of strings, or NULL on error.
-//
+//   - utf8s: A possibly empty array of strings, or NULL on error.
 func (self *Installation) DefaultLanguages() ([]string, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _cret **C.char               // in
@@ -1230,8 +1213,7 @@ func (self *Installation) DefaultLanguages() ([]string, error) {
 //
 // The function returns the following values:
 //
-//    - utf8s: A possibly empty array of locale strings, or NULL on error.
-//
+//   - utf8s: A possibly empty array of locale strings, or NULL on error.
 func (self *Installation) DefaultLocales() ([]string, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _cret **C.char               // in
@@ -1274,8 +1256,7 @@ func (self *Installation) DefaultLocales() ([]string, error) {
 //
 // The function returns the following values:
 //
-//    - utf8: string with the installation's display name.
-//
+//   - utf8: string with the installation's display name.
 func (self *Installation) DisplayName() string {
 	var _arg0 *C.FlatpakInstallation // out
 	var _cret *C.char                // in
@@ -1299,8 +1280,7 @@ func (self *Installation) DisplayName() string {
 //
 // The function returns the following values:
 //
-//    - utf8: string with the installation's ID.
-//
+//   - utf8: string with the installation's ID.
 func (self *Installation) ID() string {
 	var _arg0 *C.FlatpakInstallation // out
 	var _cret *C.char                // in
@@ -1321,8 +1301,7 @@ func (self *Installation) ID() string {
 //
 // The function returns the following values:
 //
-//    - ok: TRUE if self is a per-user installation.
-//
+//   - ok: TRUE if self is a per-user installation.
 func (self *Installation) IsUser() bool {
 	var _arg0 *C.FlatpakInstallation // out
 	var _cret C.gboolean             // in
@@ -1350,8 +1329,7 @@ func (self *Installation) IsUser() bool {
 //
 // The function returns the following values:
 //
-//    - outBytes: location to store the result.
-//
+//   - outBytes: location to store the result.
 func (self *Installation) MinFreeSpaceBytes() (uint64, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg1 C.guint64              // in
@@ -1378,8 +1356,7 @@ func (self *Installation) MinFreeSpaceBytes() (uint64, error) {
 //
 // The function returns the following values:
 //
-//    - ok: TRUE if interactive authorization dialogs are not allowed.
-//
+//   - ok: TRUE if interactive authorization dialogs are not allowed.
 func (self *Installation) NoInteraction() bool {
 	var _arg0 *C.FlatpakInstallation // out
 	var _cret C.gboolean             // in
@@ -1402,8 +1379,7 @@ func (self *Installation) NoInteraction() bool {
 //
 // The function returns the following values:
 //
-//    - file: #GFile.
-//
+//   - file: #GFile.
 func (self *Installation) Path() *gio.File {
 	var _arg0 *C.FlatpakInstallation // out
 	var _cret *C.GFile               // in
@@ -1429,8 +1405,7 @@ func (self *Installation) Path() *gio.File {
 //
 // The function returns the following values:
 //
-//    - gint: integer with the configured priority value.
-//
+//   - gint: integer with the configured priority value.
 func (self *Installation) Priority() int {
 	var _arg0 *C.FlatpakInstallation // out
 	var _cret C.gint                 // in
@@ -1451,13 +1426,12 @@ func (self *Installation) Priority() int {
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - name: remote name.
+//   - ctx (optional): #GCancellable.
+//   - name: remote name.
 //
 // The function returns the following values:
 //
-//    - remote instance, or NULL with error set.
-//
+//   - remote instance, or NULL with error set.
 func (self *Installation) RemoteByName(ctx context.Context, name string) (*Remote, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg2 *C.GCancellable        // out
@@ -1494,8 +1468,7 @@ func (self *Installation) RemoteByName(ctx context.Context, name string) (*Remot
 //
 // The function returns the following values:
 //
-//    - storageType: StorageType.
-//
+//   - storageType: StorageType.
 func (self *Installation) StorageType() StorageType {
 	var _arg0 *C.FlatpakInstallation // out
 	var _cret C.FlatpakStorageType   // in
@@ -1519,29 +1492,28 @@ func (self *Installation) StorageType() StorageType {
 // Install a new application or runtime.
 //
 // Note that this function was originally written to always return a
-// InstalledRef. Since 0.9.13, passing FLATPAK_INSTALL_FLAGS_NO_DEPLOY will only
-// pull refs into the local flatpak repository without deploying them, however
-// this function will be unable to provide information on the installed ref, so
-// FLATPAK_ERROR_ONLY_PULLED will be set and the caller must respond
+// InstalledRef. Since 0.9.13, passing FLATPAK_INSTALL_FLAGS_NO_DEPLOY will
+// only pull refs into the local flatpak repository without deploying them,
+// however this function will be unable to provide information on the installed
+// ref, so FLATPAK_ERROR_ONLY_PULLED will be set and the caller must respond
 // accordingly.
 //
 // Deprecated: Use flatpak_transaction_add_install() instead.
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - remoteName: name of the remote to use.
-//    - kind: what this ref contains (an RefKind).
-//    - name of the app/runtime to fetch.
-//    - arch (optional): which architecture to fetch (default: current
-//      architecture).
-//    - branch (optional): which branch to fetch (default: 'master').
-//    - progress (optional) callback.
+//   - ctx (optional): #GCancellable.
+//   - remoteName: name of the remote to use.
+//   - kind: what this ref contains (an RefKind).
+//   - name of the app/runtime to fetch.
+//   - arch (optional): which architecture to fetch (default: current
+//     architecture).
+//   - branch (optional): which branch to fetch (default: 'master').
+//   - progress (optional) callback.
 //
 // The function returns the following values:
 //
-//    - installedRef: ref for the newly installed app or NULL on failure.
-//
+//   - installedRef: ref for the newly installed app or NULL on failure.
 func (self *Installation) Install(ctx context.Context, remoteName string, kind RefKind, name, arch, branch string, progress ProgressCallback) (*InstalledRef, error) {
 	var _arg0 *C.FlatpakInstallation    // out
 	var _arg8 *C.GCancellable           // out
@@ -1612,14 +1584,13 @@ func (self *Installation) Install(ctx context.Context, remoteName string, kind R
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - file that is an flatpak bundle.
-//    - progress (optional) callback.
+//   - ctx (optional): #GCancellable.
+//   - file that is an flatpak bundle.
+//   - progress (optional) callback.
 //
 // The function returns the following values:
 //
-//    - installedRef: ref for the newly installed app or NULL on failure.
-//
+//   - installedRef: ref for the newly installed app or NULL on failure.
 func (self *Installation) InstallBundle(ctx context.Context, file gio.Filer, progress ProgressCallback) (*InstalledRef, error) {
 	var _arg0 *C.FlatpakInstallation    // out
 	var _arg4 *C.GCancellable           // out
@@ -1666,31 +1637,30 @@ func (self *Installation) InstallBundle(ctx context.Context, file gio.Filer, pro
 // Install a new application or runtime.
 //
 // Note that this function was originally written to always return a
-// InstalledRef. Since 0.9.13, passing FLATPAK_INSTALL_FLAGS_NO_DEPLOY will only
-// pull refs into the local flatpak repository without deploying them, however
-// this function will be unable to provide information on the installed ref, so
-// FLATPAK_ERROR_ONLY_PULLED will be set and the caller must respond
+// InstalledRef. Since 0.9.13, passing FLATPAK_INSTALL_FLAGS_NO_DEPLOY will
+// only pull refs into the local flatpak repository without deploying them,
+// however this function will be unable to provide information on the installed
+// ref, so FLATPAK_ERROR_ONLY_PULLED will be set and the caller must respond
 // accordingly.
 //
 // Deprecated: Use flatpak_transaction_add_install() instead.
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - flags: set of InstallFlags flag.
-//    - remoteName: name of the remote to use.
-//    - kind: what this ref contains (an RefKind).
-//    - name of the app/runtime to fetch.
-//    - arch (optional): which architecture to fetch (default: current
-//      architecture).
-//    - branch (optional): which branch to fetch (default: 'master').
-//    - subpaths (optional): list of subpaths to fetch, or NULL for everything.
-//    - progress (optional) callback.
+//   - ctx (optional): #GCancellable.
+//   - flags: set of InstallFlags flag.
+//   - remoteName: name of the remote to use.
+//   - kind: what this ref contains (an RefKind).
+//   - name of the app/runtime to fetch.
+//   - arch (optional): which architecture to fetch (default: current
+//     architecture).
+//   - branch (optional): which branch to fetch (default: 'master').
+//   - subpaths (optional): list of subpaths to fetch, or NULL for everything.
+//   - progress (optional) callback.
 //
 // The function returns the following values:
 //
-//    - installedRef: ref for the newly installed app or NULL on failure.
-//
+//   - installedRef: ref for the newly installed app or NULL on failure.
 func (self *Installation) InstallFull(ctx context.Context, flags InstallFlags, remoteName string, kind RefKind, name, arch, branch string, subpaths []string, progress ProgressCallback) (*InstalledRef, error) {
 	var _arg0 *C.FlatpakInstallation    // out
 	var _arg10 *C.GCancellable          // out
@@ -1769,27 +1739,26 @@ func (self *Installation) InstallFull(ctx context.Context, flags InstallFlags, r
 }
 
 // InstallRefFile: this is an old deprecated function, you should use
-// Transaction and flatpak_transaction_add_install_flatpakref() instead. It has
-// a lot more interesting features.
+// Transaction and flatpak_transaction_add_install_flatpakref() instead.
+// It has a lot more interesting features.
 //
 // Creates a remote based on the passed in .flatpakref file contents in
 // ref_file_data and returns the RemoteRef that can be used to install it.
 //
-// Note, the RemoteRef will not have the commit field set, or other details, to
-// avoid unnecessary roundtrips. If you need that you have to resolve it
+// Note, the RemoteRef will not have the commit field set, or other details,
+// to avoid unnecessary roundtrips. If you need that you have to resolve it
 // explicitly with flatpak_installation_fetch_remote_ref_sync ().
 //
 // Deprecated: Use flatpak_transaction_add_install_flatpakref() instead.
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - refFileData: ref file contents.
+//   - ctx (optional): #GCancellable.
+//   - refFileData: ref file contents.
 //
 // The function returns the following values:
 //
-//    - remoteRef if the remote has been added successfully, NULL on error.
-//
+//   - remoteRef if the remote has been added successfully, NULL on error.
 func (self *Installation) InstallRefFile(ctx context.Context, refFileData *glib.Bytes) (*RemoteRef, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg2 *C.GCancellable        // out
@@ -1829,13 +1798,12 @@ func (self *Installation) InstallRefFile(ctx context.Context, refFileData *glib.
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - name of the app to launch.
-//    - arch (optional): which architecture to launch (default: current
-//      architecture).
-//    - branch (optional): which branch of the application (default: "master").
-//    - commit (optional) of branch to launch.
-//
+//   - ctx (optional): #GCancellable.
+//   - name of the app to launch.
+//   - arch (optional): which architecture to launch (default: current
+//     architecture).
+//   - branch (optional): which branch of the application (default: "master").
+//   - commit (optional) of branch to launch.
 func (self *Installation) Launch(ctx context.Context, name, arch, branch, commit string) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg5 *C.GCancellable        // out
@@ -1887,13 +1855,12 @@ func (self *Installation) Launch(ctx context.Context, name, arch, branch, commit
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - appId: application id.
+//   - ctx (optional): #GCancellable.
+//   - appId: application id.
 //
 // The function returns the following values:
 //
-//    - utf8 contents of the overrides files, or NULL if an error occurred.
-//
+//   - utf8 contents of the overrides files, or NULL if an error occurred.
 func (self *Installation) LoadAppOverrides(ctx context.Context, appId string) (string, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg2 *C.GCancellable        // out
@@ -1931,9 +1898,8 @@ func (self *Installation) LoadAppOverrides(ctx context.Context, appId string) (s
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - remote: modified Remote.
-//
+//   - ctx (optional): #GCancellable.
+//   - remote: modified Remote.
 func (self *Installation) ModifyRemote(ctx context.Context, remote *Remote) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg2 *C.GCancellable        // out
@@ -1967,8 +1933,7 @@ func (self *Installation) ModifyRemote(ctx context.Context, remote *Remote) erro
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//
+//   - ctx (optional): #GCancellable.
 func (self *Installation) PruneLocalRepo(ctx context.Context) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg1 *C.GCancellable        // out
@@ -1996,20 +1961,19 @@ func (self *Installation) PruneLocalRepo(ctx context.Context) error {
 
 // RemoveLocalRefSync: remove the OSTree ref given by remote_name:ref from the
 // local flatpak repository. The next time the underlying OSTree repo is pruned,
-// objects which were attached to that ref will be removed. This is useful if
-// you pulled a flatpak ref using flatpak_installation_install_full() and
-// specified FLATPAK_INSTALL_FLAGS_NO_DEPLOY but then decided not to deploy the
-// ref later on and want to remove the local ref to prevent it from taking up
-// disk space. Note that this will not remove the objects referred to by ref
-// from the underlying OSTree repo, you should use
+// objects which were attached to that ref will be removed. This is useful
+// if you pulled a flatpak ref using flatpak_installation_install_full()
+// and specified FLATPAK_INSTALL_FLAGS_NO_DEPLOY but then decided not to
+// deploy the ref later on and want to remove the local ref to prevent it
+// from taking up disk space. Note that this will not remove the objects
+// referred to by ref from the underlying OSTree repo, you should use
 // flatpak_installation_prune_local_repo() to do that.
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - remoteName: name of the remote.
-//    - ref: ref.
-//
+//   - ctx (optional): #GCancellable.
+//   - remoteName: name of the remote.
+//   - ref: ref.
 func (self *Installation) RemoveLocalRefSync(ctx context.Context, remoteName, ref string) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg3 *C.GCancellable        // out
@@ -2047,9 +2011,8 @@ func (self *Installation) RemoveLocalRefSync(ctx context.Context, remoteName, re
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - name of the remote to remove.
-//
+//   - ctx (optional): #GCancellable.
+//   - name of the remote to remove.
 func (self *Installation) RemoveRemote(ctx context.Context, name string) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg2 *C.GCancellable        // out
@@ -2079,16 +2042,15 @@ func (self *Installation) RemoveRemote(ctx context.Context, name string) error {
 	return _goerr
 }
 
-// RunTriggers: run the trigger commands to update the files exported by the
-// apps in self. Should be used after one or more app install, upgrade or
-// uninstall operations with the FLATPAK_INSTALL_FLAGS_NO_TRIGGERS,
+// RunTriggers: run the trigger commands to update the files exported
+// by the apps in self. Should be used after one or more app install,
+// upgrade or uninstall operations with the FLATPAK_INSTALL_FLAGS_NO_TRIGGERS,
 // FLATPAK_UPDATE_FLAGS_NO_TRIGGERS or FLATPAK_UNINSTALL_FLAGS_NO_TRIGGERS flags
 // set.
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//
+//   - ctx (optional): #GCancellable.
 func (self *Installation) RunTriggers(ctx context.Context) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg1 *C.GCancellable        // out
@@ -2122,10 +2084,9 @@ func (self *Installation) RunTriggers(ctx context.Context) error {
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - key: name of the key to set.
-//    - value: new value, or NULL to unset.
-//
+//   - ctx (optional): #GCancellable.
+//   - key: name of the key to set.
+//   - value: new value, or NULL to unset.
 func (self *Installation) SetConfigSync(ctx context.Context, key, value string) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg3 *C.GCancellable        // out
@@ -2167,9 +2128,8 @@ func (self *Installation) SetConfigSync(ctx context.Context, key, value string) 
 //
 // The function takes the following parameters:
 //
-//    - noInteraction: whether to disallow interactive authorization for
-//      operations.
-//
+//   - noInteraction: whether to disallow interactive authorization for
+//     operations.
 func (self *Installation) SetNoInteraction(noInteraction bool) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg1 C.gboolean             // out
@@ -2194,15 +2154,14 @@ func (self *Installation) SetNoInteraction(noInteraction bool) {
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - kind: what this ref contains (an RefKind).
-//    - name of the app or runtime to uninstall.
-//    - arch (optional): architecture of the app or runtime to uninstall; if
-//      NULL, flatpak_get_default_arch() is assumed.
-//    - branch (optional): name of the branch of the app or runtime to uninstall;
-//      if NULL, master is assumed.
-//    - progress (optional): callback.
-//
+//   - ctx (optional): #GCancellable.
+//   - kind: what this ref contains (an RefKind).
+//   - name of the app or runtime to uninstall.
+//   - arch (optional): architecture of the app or runtime to uninstall;
+//     if NULL, flatpak_get_default_arch() is assumed.
+//   - branch (optional): name of the branch of the app or runtime to uninstall;
+//     if NULL, master is assumed.
+//   - progress (optional): callback.
 func (self *Installation) Uninstall(ctx context.Context, kind RefKind, name, arch, branch string, progress ProgressCallback) error {
 	var _arg0 *C.FlatpakInstallation    // out
 	var _arg7 *C.GCancellable           // out
@@ -2265,16 +2224,15 @@ func (self *Installation) Uninstall(ctx context.Context, kind RefKind, name, arc
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - flags: set of UninstallFlags flags.
-//    - kind: what this ref contains (an RefKind).
-//    - name of the app or runtime to uninstall.
-//    - arch (optional): architecture of the app or runtime to uninstall; if
-//      NULL, flatpak_get_default_arch() is assumed.
-//    - branch (optional): name of the branch of the app or runtime to uninstall;
-//      if NULL, master is assumed.
-//    - progress (optional): callback.
-//
+//   - ctx (optional): #GCancellable.
+//   - flags: set of UninstallFlags flags.
+//   - kind: what this ref contains (an RefKind).
+//   - name of the app or runtime to uninstall.
+//   - arch (optional): architecture of the app or runtime to uninstall;
+//     if NULL, flatpak_get_default_arch() is assumed.
+//   - branch (optional): name of the branch of the app or runtime to uninstall;
+//     if NULL, master is assumed.
+//   - progress (optional): callback.
 func (self *Installation) UninstallFull(ctx context.Context, flags UninstallFlags, kind RefKind, name, arch, branch string, progress ProgressCallback) error {
 	var _arg0 *C.FlatpakInstallation    // out
 	var _arg8 *C.GCancellable           // out
@@ -2346,20 +2304,19 @@ func (self *Installation) UninstallFull(ctx context.Context, flags UninstallFlag
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - flags: set of UpdateFlags flag.
-//    - kind: whether this is an app or runtime.
-//    - name of the app or runtime to update.
-//    - arch (optional): architecture of the app or runtime to update (default:
-//      current architecture).
-//    - branch (optional): name of the branch of the app or runtime to update
-//      (default: master).
-//    - progress (optional): callback.
+//   - ctx (optional): #GCancellable.
+//   - flags: set of UpdateFlags flag.
+//   - kind: whether this is an app or runtime.
+//   - name of the app or runtime to update.
+//   - arch (optional): architecture of the app or runtime to update (default:
+//     current architecture).
+//   - branch (optional): name of the branch of the app or runtime to update
+//     (default: master).
+//   - progress (optional): callback.
 //
 // The function returns the following values:
 //
-//    - installedRef: ref for the newly updated app or NULL on failure.
-//
+//   - installedRef: ref for the newly updated app or NULL on failure.
 func (self *Installation) Update(ctx context.Context, flags UpdateFlags, kind RefKind, name, arch, branch string, progress ProgressCallback) (*InstalledRef, error) {
 	var _arg0 *C.FlatpakInstallation    // out
 	var _arg8 *C.GCancellable           // out
@@ -2434,21 +2391,20 @@ func (self *Installation) Update(ctx context.Context, flags UpdateFlags, kind Re
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - flags: set of UpdateFlags flag.
-//    - kind: whether this is an app or runtime.
-//    - name of the app or runtime to update.
-//    - arch (optional): architecture of the app or runtime to update (default:
-//      current architecture).
-//    - branch (optional): name of the branch of the app or runtime to update
-//      (default: master).
-//    - subpaths (optional): list of subpaths to fetch, or NULL for everything.
-//    - progress (optional): callback.
+//   - ctx (optional): #GCancellable.
+//   - flags: set of UpdateFlags flag.
+//   - kind: whether this is an app or runtime.
+//   - name of the app or runtime to update.
+//   - arch (optional): architecture of the app or runtime to update (default:
+//     current architecture).
+//   - branch (optional): name of the branch of the app or runtime to update
+//     (default: master).
+//   - subpaths (optional): list of subpaths to fetch, or NULL for everything.
+//   - progress (optional): callback.
 //
 // The function returns the following values:
 //
-//    - installedRef: ref for the newly updated app or NULL on failure.
-//
+//   - installedRef: ref for the newly updated app or NULL on failure.
 func (self *Installation) UpdateFull(ctx context.Context, flags UpdateFlags, kind RefKind, name, arch, branch string, subpaths []string, progress ProgressCallback) (*InstalledRef, error) {
 	var _arg0 *C.FlatpakInstallation    // out
 	var _arg9 *C.GCancellable           // out
@@ -2528,9 +2484,8 @@ func (self *Installation) UpdateFull(ctx context.Context, flags UpdateFlags, kin
 //
 // The function takes the following parameters:
 //
-//    - ctx (optional): #GCancellable.
-//    - name of the remote to update.
-//
+//   - ctx (optional): #GCancellable.
+//   - name of the remote to update.
 func (self *Installation) UpdateRemoteSync(ctx context.Context, name string) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg2 *C.GCancellable        // out

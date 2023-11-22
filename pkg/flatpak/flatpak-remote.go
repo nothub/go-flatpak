@@ -102,12 +102,11 @@ func marshalRemote(p uintptr) (interface{}, error) {
 //
 // The function takes the following parameters:
 //
-//    - name: name.
+//   - name: name.
 //
 // The function returns the following values:
 //
-//    - remote: new Remote.
-//
+//   - remote: new Remote.
 func NewRemote(name string) *Remote {
 	var _arg1 *C.char          // out
 	var _cret *C.FlatpakRemote // in
@@ -135,13 +134,12 @@ func NewRemote(name string) *Remote {
 //
 // The function takes the following parameters:
 //
-//    - name: name.
-//    - data: content of a flatpakrepo file.
+//   - name: name.
+//   - data: content of a flatpakrepo file.
 //
 // The function returns the following values:
 //
-//    - remote: new Remote, or NULL on error.
-//
+//   - remote: new Remote, or NULL on error.
 func NewRemoteFromFile(name string, data *glib.Bytes) (*Remote, error) {
 	var _arg1 *C.char          // out
 	var _arg2 *C.GBytes        // out
@@ -172,13 +170,12 @@ func NewRemoteFromFile(name string, data *glib.Bytes) (*Remote, error) {
 //
 // The function takes the following parameters:
 //
-//    - arch (optional): which architecture to fetch (default: current
-//      architecture).
+//   - arch (optional): which architecture to fetch (default: current
+//     architecture).
 //
 // The function returns the following values:
 //
-//    - file: #GFile.
-//
+//   - file: #GFile.
 func (self *Remote) AppstreamDir(arch string) *gio.File {
 	var _arg0 *C.FlatpakRemote // out
 	var _arg1 *C.char          // out
@@ -212,13 +209,12 @@ func (self *Remote) AppstreamDir(arch string) *gio.File {
 //
 // The function takes the following parameters:
 //
-//    - arch (optional): which architecture to fetch (default: current
-//      architecture).
+//   - arch (optional): which architecture to fetch (default: current
+//     architecture).
 //
 // The function returns the following values:
 //
-//    - file: #GFile.
-//
+//   - file: #GFile.
 func (self *Remote) AppstreamTimestamp(arch string) *gio.File {
 	var _arg0 *C.FlatpakRemote // out
 	var _arg1 *C.char          // out
@@ -250,8 +246,7 @@ func (self *Remote) AppstreamTimestamp(arch string) *gio.File {
 //
 // The function returns the following values:
 //
-//    - utf8 (optional): collection ID, or NULL if unset.
-//
+//   - utf8 (optional): collection ID, or NULL if unset.
 func (self *Remote) CollectionID() string {
 	var _arg0 *C.FlatpakRemote // out
 	var _cret *C.char          // in
@@ -275,8 +270,7 @@ func (self *Remote) CollectionID() string {
 //
 // The function returns the following values:
 //
-//    - utf8: comment.
-//
+//   - utf8: comment.
 func (self *Remote) Comment() string {
 	var _arg0 *C.FlatpakRemote // out
 	var _cret *C.char          // in
@@ -298,8 +292,7 @@ func (self *Remote) Comment() string {
 //
 // The function returns the following values:
 //
-//    - utf8: default branch, or NULL.
-//
+//   - utf8: default branch, or NULL.
 func (self *Remote) DefaultBranch() string {
 	var _arg0 *C.FlatpakRemote // out
 	var _cret *C.char          // in
@@ -321,8 +314,7 @@ func (self *Remote) DefaultBranch() string {
 //
 // The function returns the following values:
 //
-//    - utf8: description.
-//
+//   - utf8: description.
 func (self *Remote) Description() string {
 	var _arg0 *C.FlatpakRemote // out
 	var _cret *C.char          // in
@@ -344,8 +336,7 @@ func (self *Remote) Description() string {
 //
 // The function returns the following values:
 //
-//    - ok: whether the remote is marked as disabled.
-//
+//   - ok: whether the remote is marked as disabled.
 func (self *Remote) Disabled() bool {
 	var _arg0 *C.FlatpakRemote // out
 	var _cret C.gboolean       // in
@@ -368,8 +359,7 @@ func (self *Remote) Disabled() bool {
 //
 // The function returns the following values:
 //
-//    - utf8: pathname to a filter file.
-//
+//   - utf8: pathname to a filter file.
 func (self *Remote) Filter() string {
 	var _arg0 *C.FlatpakRemote // out
 	var _cret *C.char          // in
@@ -391,8 +381,7 @@ func (self *Remote) Filter() string {
 //
 // The function returns the following values:
 //
-//    - ok: whether GPG verification is enabled.
-//
+//   - ok: whether GPG verification is enabled.
 func (self *Remote) GpgVerify() bool {
 	var _arg0 *C.FlatpakRemote // out
 	var _cret C.gboolean       // in
@@ -415,8 +404,7 @@ func (self *Remote) GpgVerify() bool {
 //
 // The function returns the following values:
 //
-//    - utf8: homepage url.
-//
+//   - utf8: homepage url.
 func (self *Remote) Homepage() string {
 	var _arg0 *C.FlatpakRemote // out
 	var _cret *C.char          // in
@@ -438,8 +426,7 @@ func (self *Remote) Homepage() string {
 //
 // The function returns the following values:
 //
-//    - utf8: icon url.
-//
+//   - utf8: icon url.
 func (self *Remote) Icon() string {
 	var _arg0 *C.FlatpakRemote // out
 	var _cret *C.char          // in
@@ -461,8 +448,7 @@ func (self *Remote) Icon() string {
 //
 // The function returns the following values:
 //
-//    - utf8: name.
-//
+//   - utf8: name.
 func (self *Remote) Name() string {
 	var _arg0 *C.FlatpakRemote // out
 	var _cret *C.char          // in
@@ -483,8 +469,7 @@ func (self *Remote) Name() string {
 //
 // The function returns the following values:
 //
-//    - ok: whether the remote is marked as "don't use for dependencies".
-//
+//   - ok: whether the remote is marked as "don't use for dependencies".
 func (self *Remote) Nodeps() bool {
 	var _arg0 *C.FlatpakRemote // out
 	var _cret C.gboolean       // in
@@ -507,8 +492,7 @@ func (self *Remote) Nodeps() bool {
 //
 // The function returns the following values:
 //
-//    - ok: whether the remote is marked as "don't enumerate".
-//
+//   - ok: whether the remote is marked as "don't enumerate".
 func (self *Remote) Noenumerate() bool {
 	var _arg0 *C.FlatpakRemote // out
 	var _cret C.gboolean       // in
@@ -531,8 +515,7 @@ func (self *Remote) Noenumerate() bool {
 //
 // The function returns the following values:
 //
-//    - gint: priority.
-//
+//   - gint: priority.
 func (self *Remote) Prio() int {
 	var _arg0 *C.FlatpakRemote // out
 	var _cret C.int            // in
@@ -553,8 +536,7 @@ func (self *Remote) Prio() int {
 //
 // The function returns the following values:
 //
-//    - remoteType: type of remote this is.
-//
+//   - remoteType: type of remote this is.
 func (self *Remote) RemoteType() RemoteType {
 	var _arg0 *C.FlatpakRemote    // out
 	var _cret C.FlatpakRemoteType // in
@@ -575,8 +557,7 @@ func (self *Remote) RemoteType() RemoteType {
 //
 // The function returns the following values:
 //
-//    - utf8: title.
-//
+//   - utf8: title.
 func (self *Remote) Title() string {
 	var _arg0 *C.FlatpakRemote // out
 	var _cret *C.char          // in
@@ -598,8 +579,7 @@ func (self *Remote) Title() string {
 //
 // The function returns the following values:
 //
-//    - utf8: URL.
-//
+//   - utf8: URL.
 func (self *Remote) URL() string {
 	var _arg0 *C.FlatpakRemote // out
 	var _cret *C.char          // in
@@ -624,8 +604,7 @@ func (self *Remote) URL() string {
 //
 // The function takes the following parameters:
 //
-//    - collectionId (optional): new collection ID, or NULL to unset.
-//
+//   - collectionId (optional): new collection ID, or NULL to unset.
 func (self *Remote) SetCollectionID(collectionId string) {
 	var _arg0 *C.FlatpakRemote // out
 	var _arg1 *C.char          // out
@@ -648,8 +627,7 @@ func (self *Remote) SetCollectionID(collectionId string) {
 //
 // The function takes the following parameters:
 //
-//    - comment: new comment.
-//
+//   - comment: new comment.
 func (self *Remote) SetComment(comment string) {
 	var _arg0 *C.FlatpakRemote // out
 	var _arg1 *C.char          // out
@@ -670,8 +648,7 @@ func (self *Remote) SetComment(comment string) {
 //
 // The function takes the following parameters:
 //
-//    - defaultBranch: new default_branch, or NULL to unset.
-//
+//   - defaultBranch: new default_branch, or NULL to unset.
 func (self *Remote) SetDefaultBranch(defaultBranch string) {
 	var _arg0 *C.FlatpakRemote // out
 	var _arg1 *C.char          // out
@@ -692,8 +669,7 @@ func (self *Remote) SetDefaultBranch(defaultBranch string) {
 //
 // The function takes the following parameters:
 //
-//    - description: new description.
-//
+//   - description: new description.
 func (self *Remote) SetDescription(description string) {
 	var _arg0 *C.FlatpakRemote // out
 	var _arg1 *C.char          // out
@@ -715,8 +691,7 @@ func (self *Remote) SetDescription(description string) {
 //
 // The function takes the following parameters:
 //
-//    - disabled: bool.
-//
+//   - disabled: bool.
 func (self *Remote) SetDisabled(disabled bool) {
 	var _arg0 *C.FlatpakRemote // out
 	var _arg1 C.gboolean       // out
@@ -738,8 +713,7 @@ func (self *Remote) SetDisabled(disabled bool) {
 //
 // The function takes the following parameters:
 //
-//    - filterPath: pathname of the new filter file.
-//
+//   - filterPath: pathname of the new filter file.
 func (self *Remote) SetFilter(filterPath string) {
 	var _arg0 *C.FlatpakRemote // out
 	var _arg1 *C.char          // out
@@ -760,8 +734,7 @@ func (self *Remote) SetFilter(filterPath string) {
 //
 // The function takes the following parameters:
 //
-//    - gpgKey with gpg binary key data.
-//
+//   - gpgKey with gpg binary key data.
 func (self *Remote) SetGpgKey(gpgKey *glib.Bytes) {
 	var _arg0 *C.FlatpakRemote // out
 	var _arg1 *C.GBytes        // out
@@ -782,8 +755,7 @@ func (self *Remote) SetGpgKey(gpgKey *glib.Bytes) {
 //
 // The function takes the following parameters:
 //
-//    - gpgVerify: bool.
-//
+//   - gpgVerify: bool.
 func (self *Remote) SetGpgVerify(gpgVerify bool) {
 	var _arg0 *C.FlatpakRemote // out
 	var _arg1 C.gboolean       // out
@@ -805,8 +777,7 @@ func (self *Remote) SetGpgVerify(gpgVerify bool) {
 //
 // The function takes the following parameters:
 //
-//    - homepage: new homepage.
-//
+//   - homepage: new homepage.
 func (self *Remote) SetHomepage(homepage string) {
 	var _arg0 *C.FlatpakRemote // out
 	var _arg1 *C.char          // out
@@ -827,8 +798,7 @@ func (self *Remote) SetHomepage(homepage string) {
 //
 // The function takes the following parameters:
 //
-//    - icon: new homepage.
-//
+//   - icon: new homepage.
 func (self *Remote) SetIcon(icon string) {
 	var _arg0 *C.FlatpakRemote // out
 	var _arg1 *C.char          // out
@@ -850,8 +820,7 @@ func (self *Remote) SetIcon(icon string) {
 //
 // The function takes the following parameters:
 //
-//    - nodeps: bool.
-//
+//   - nodeps: bool.
 func (self *Remote) SetNodeps(nodeps bool) {
 	var _arg0 *C.FlatpakRemote // out
 	var _arg1 C.gboolean       // out
@@ -874,8 +843,7 @@ func (self *Remote) SetNodeps(nodeps bool) {
 //
 // The function takes the following parameters:
 //
-//    - noenumerate: bool.
-//
+//   - noenumerate: bool.
 func (self *Remote) SetNoenumerate(noenumerate bool) {
 	var _arg0 *C.FlatpakRemote // out
 	var _arg1 C.gboolean       // out
@@ -897,8 +865,7 @@ func (self *Remote) SetNoenumerate(noenumerate bool) {
 //
 // The function takes the following parameters:
 //
-//    - prio: bool.
-//
+//   - prio: bool.
 func (self *Remote) SetPrio(prio int) {
 	var _arg0 *C.FlatpakRemote // out
 	var _arg1 C.int            // out
@@ -918,8 +885,7 @@ func (self *Remote) SetPrio(prio int) {
 //
 // The function takes the following parameters:
 //
-//    - title: new title, or NULL to unset.
-//
+//   - title: new title, or NULL to unset.
 func (self *Remote) SetTitle(title string) {
 	var _arg0 *C.FlatpakRemote // out
 	var _arg1 *C.char          // out
@@ -940,8 +906,7 @@ func (self *Remote) SetTitle(title string) {
 //
 // The function takes the following parameters:
 //
-//    - url: new url.
-//
+//   - url: new url.
 func (self *Remote) SetURL(url string) {
 	var _arg0 *C.FlatpakRemote // out
 	var _arg1 *C.char          // out

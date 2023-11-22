@@ -1,6 +1,6 @@
 package main
 
-//go:generate go run . -out pkg
+//go:generate go run .
 
 import (
 	"flag"
@@ -19,7 +19,7 @@ var (
 )
 
 func init() {
-	flag.StringVar(&output, "out", "", "output directory to mkdir in")
+	flag.StringVar(&output, "out", "pkg", "output directory to mkdir in")
 	flag.BoolVar(&listPkg, "ls", listPkg, "only list packages and exit")
 	flag.Parse()
 

@@ -1,4 +1,4 @@
-module github.com/erazemk/go-flatpak
+module github.com/nothub/goflatpak
 
 go 1.19
 

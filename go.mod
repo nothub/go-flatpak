@@ -1,6 +1,6 @@
 module github.com/erazemk/go-flatpak
 
-go 1.18
+go 1.19
 
 require github.com/diamondburned/gotk4 v0.0.3-0.20220529201008-66c7fe5d2b7c
 

@@ -63,6 +63,7 @@ func marshalInstance(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - utf8 (optional): application ID or NULL.
+//
 func (self *Instance) App() string {
 	var _arg0 *C.FlatpakInstance // out
 	var _cret *C.char            // in
@@ -86,6 +87,7 @@ func (self *Instance) App() string {
 // The function returns the following values:
 //
 //   - utf8: architecture.
+//
 func (self *Instance) Arch() string {
 	var _arg0 *C.FlatpakInstance // out
 	var _cret *C.char            // in
@@ -107,6 +109,7 @@ func (self *Instance) Arch() string {
 // The function returns the following values:
 //
 //   - utf8: architecture.
+//
 func (self *Instance) Branch() string {
 	var _arg0 *C.FlatpakInstance // out
 	var _cret *C.char            // in
@@ -133,6 +136,7 @@ func (self *Instance) Branch() string {
 // The function returns the following values:
 //
 //   - gint: application process PID.
+//
 func (self *Instance) ChildPid() int {
 	var _arg0 *C.FlatpakInstance // out
 	var _cret C.int              // in
@@ -154,6 +158,7 @@ func (self *Instance) ChildPid() int {
 // The function returns the following values:
 //
 //   - utf8: commit.
+//
 func (self *Instance) Commit() string {
 	var _arg0 *C.FlatpakInstance // out
 	var _cret *C.char            // in
@@ -176,6 +181,7 @@ func (self *Instance) Commit() string {
 // The function returns the following values:
 //
 //   - utf8: instance ID.
+//
 func (self *Instance) ID() string {
 	var _arg0 *C.FlatpakInstance // out
 	var _cret *C.char            // in
@@ -202,6 +208,7 @@ func (self *Instance) ID() string {
 // The function returns the following values:
 //
 //   - keyFile: flatpak-info keyfile.
+//
 func (self *Instance) Info() *glib.KeyFile {
 	var _arg0 *C.FlatpakInstance // out
 	var _cret *C.GKeyFile        // in
@@ -232,6 +239,7 @@ func (self *Instance) Info() *glib.KeyFile {
 // The function returns the following values:
 //
 //   - gint: outermost process PID.
+//
 func (self *Instance) Pid() int {
 	var _arg0 *C.FlatpakInstance // out
 	var _cret C.int              // in
@@ -253,6 +261,7 @@ func (self *Instance) Pid() int {
 // The function returns the following values:
 //
 //   - utf8: runtime ref.
+//
 func (self *Instance) Runtime() string {
 	var _arg0 *C.FlatpakInstance // out
 	var _cret *C.char            // in
@@ -274,6 +283,7 @@ func (self *Instance) Runtime() string {
 // The function returns the following values:
 //
 //   - utf8: runtime commit.
+//
 func (self *Instance) RuntimeCommit() string {
 	var _arg0 *C.FlatpakInstance // out
 	var _cret *C.char            // in
@@ -295,6 +305,7 @@ func (self *Instance) RuntimeCommit() string {
 // The function returns the following values:
 //
 //   - ok: TRUE if the sandbox is still running.
+//
 func (self *Instance) IsRunning() bool {
 	var _arg0 *C.FlatpakInstance // out
 	var _cret C.gboolean         // in

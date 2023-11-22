@@ -415,6 +415,7 @@ func _gotk4_flatpak1_ProgressCallback(arg1 *C.char, arg2 C.guint, arg3 C.gboolea
 // The function returns the following values:
 //
 //   - utf8: arch string.
+//
 func GetDefaultArch() string {
 	var _cret *C.char // in
 
@@ -434,6 +435,7 @@ func GetDefaultArch() string {
 // The function returns the following values:
 //
 //   - utf8s: zero terminated array of arch strings.
+//
 func GetSupportedArches() []string {
 	var _cret **C.char // in
 
@@ -501,6 +503,7 @@ func marshalInstallation(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - installation: new Installation.
+//
 func NewInstallationForPath(ctx context.Context, path gio.Filer, user bool) (*Installation, error) {
 	var _arg3 *C.GCancellable        // out
 	var _arg1 *C.GFile               // out
@@ -544,6 +547,7 @@ func NewInstallationForPath(ctx context.Context, path gio.Filer, user bool) (*In
 // The function returns the following values:
 //
 //   - installation: new Installation.
+//
 func NewInstallationSystem(ctx context.Context) (*Installation, error) {
 	var _arg1 *C.GCancellable        // out
 	var _cret *C.FlatpakInstallation // in
@@ -580,6 +584,7 @@ func NewInstallationSystem(ctx context.Context) (*Installation, error) {
 // The function returns the following values:
 //
 //   - installation: new Installation.
+//
 func NewInstallationSystemWithID(ctx context.Context, id string) (*Installation, error) {
 	var _arg2 *C.GCancellable        // out
 	var _arg1 *C.char                // out
@@ -620,6 +625,7 @@ func NewInstallationSystemWithID(ctx context.Context, id string) (*Installation,
 // The function returns the following values:
 //
 //   - installation: new Installation.
+//
 func NewInstallationUser(ctx context.Context) (*Installation, error) {
 	var _arg1 *C.GCancellable        // out
 	var _cret *C.FlatpakInstallation // in
@@ -663,6 +669,7 @@ func NewInstallationUser(ctx context.Context) (*Installation, error) {
 //   - ctx (optional): #GCancellable.
 //   - remote: new Remote.
 //   - ifNeeded: if TRUE, only add if it doesn't exists.
+//
 func (self *Installation) AddRemote(ctx context.Context, remote *Remote, ifNeeded bool) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg3 *C.GCancellable        // out
@@ -710,6 +717,7 @@ func (self *Installation) AddRemote(ctx context.Context, remote *Remote, ifNeede
 // The function takes the following parameters:
 //
 //   - ctx (optional): #GCancellable.
+//
 func (self *Installation) CleanupLocalRefsSync(ctx context.Context) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg1 *C.GCancellable        // out
@@ -746,6 +754,7 @@ func (self *Installation) CleanupLocalRefsSync(ctx context.Context) error {
 // The function returns the following values:
 //
 //   - fileMonitor: new Monitor instance, or NULL on error.
+//
 func (self *Installation) CreateMonitor(ctx context.Context) (gio.FileMonitorrer, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg1 *C.GCancellable        // out
@@ -797,6 +806,7 @@ func (self *Installation) CreateMonitor(ctx context.Context) (gio.FileMonitorrer
 // The function takes the following parameters:
 //
 //   - ctx (optional): #GCancellable.
+//
 func (self *Installation) DropCaches(ctx context.Context) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg1 *C.GCancellable        // out
@@ -836,6 +846,7 @@ func (self *Installation) DropCaches(ctx context.Context) error {
 // The function returns the following values:
 //
 //   - bytes containing the flatpak metadata file, or NULL if an error occurred.
+//
 func (self *Installation) FetchRemoteMetadataSync(ctx context.Context, remoteName string, ref *Ref) (*glib.Bytes, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg3 *C.GCancellable        // out
@@ -892,6 +903,7 @@ func (self *Installation) FetchRemoteMetadataSync(ctx context.Context, remoteNam
 // The function returns the following values:
 //
 //   - remoteRef instance, or NULL.
+//
 func (self *Installation) FetchRemoteRefSync(ctx context.Context, remoteName string, kind RefKind, name, arch, branch string) (*RemoteRef, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg6 *C.GCancellable        // out
@@ -959,6 +971,7 @@ func (self *Installation) FetchRemoteRefSync(ctx context.Context, remoteName str
 // The function returns the following values:
 //
 //   - remoteRef instance, or NULL.
+//
 func (self *Installation) FetchRemoteRefSyncFull(ctx context.Context, remoteName string, kind RefKind, name, arch, branch string, flags QueryFlags) (*RemoteRef, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg7 *C.GCancellable        // out
@@ -1034,6 +1047,7 @@ func (self *Installation) FetchRemoteRefSyncFull(ctx context.Context, remoteName
 //
 //   - downloadSize: return location for the (maximum) download size.
 //   - installedSize: return location for the installed size.
+//
 func (self *Installation) FetchRemoteSizeSync(ctx context.Context, remoteName string, ref *Ref) (downloadSize uint64, installedSize uint64, goerr error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg5 *C.GCancellable        // out
@@ -1084,6 +1098,7 @@ func (self *Installation) FetchRemoteSizeSync(ctx context.Context, remoteName st
 //
 //   - utf8: (newly allocated) value, or NULL on error
 //     (G_KEY_FILE_ERROR_KEY_NOT_FOUND error if key is not set).
+//
 func (self *Installation) Config(ctx context.Context, key string) (string, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg2 *C.GCancellable        // out
@@ -1129,6 +1144,7 @@ func (self *Installation) Config(ctx context.Context, key string) (string, error
 // The function returns the following values:
 //
 //   - installedRef: InstalledRef.
+//
 func (self *Installation) CurrentInstalledApp(ctx context.Context, name string) (*InstalledRef, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg2 *C.GCancellable        // out
@@ -1169,6 +1185,7 @@ func (self *Installation) CurrentInstalledApp(ctx context.Context, name string) 
 // The function returns the following values:
 //
 //   - utf8s: A possibly empty array of strings, or NULL on error.
+//
 func (self *Installation) DefaultLanguages() ([]string, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _cret **C.char               // in
@@ -1214,6 +1231,7 @@ func (self *Installation) DefaultLanguages() ([]string, error) {
 // The function returns the following values:
 //
 //   - utf8s: A possibly empty array of locale strings, or NULL on error.
+//
 func (self *Installation) DefaultLocales() ([]string, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _cret **C.char               // in
@@ -1257,6 +1275,7 @@ func (self *Installation) DefaultLocales() ([]string, error) {
 // The function returns the following values:
 //
 //   - utf8: string with the installation's display name.
+//
 func (self *Installation) DisplayName() string {
 	var _arg0 *C.FlatpakInstallation // out
 	var _cret *C.char                // in
@@ -1281,6 +1300,7 @@ func (self *Installation) DisplayName() string {
 // The function returns the following values:
 //
 //   - utf8: string with the installation's ID.
+//
 func (self *Installation) ID() string {
 	var _arg0 *C.FlatpakInstallation // out
 	var _cret *C.char                // in
@@ -1302,6 +1322,7 @@ func (self *Installation) ID() string {
 // The function returns the following values:
 //
 //   - ok: TRUE if self is a per-user installation.
+//
 func (self *Installation) IsUser() bool {
 	var _arg0 *C.FlatpakInstallation // out
 	var _cret C.gboolean             // in
@@ -1330,6 +1351,7 @@ func (self *Installation) IsUser() bool {
 // The function returns the following values:
 //
 //   - outBytes: location to store the result.
+//
 func (self *Installation) MinFreeSpaceBytes() (uint64, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg1 C.guint64              // in
@@ -1357,6 +1379,7 @@ func (self *Installation) MinFreeSpaceBytes() (uint64, error) {
 // The function returns the following values:
 //
 //   - ok: TRUE if interactive authorization dialogs are not allowed.
+//
 func (self *Installation) NoInteraction() bool {
 	var _arg0 *C.FlatpakInstallation // out
 	var _cret C.gboolean             // in
@@ -1380,6 +1403,7 @@ func (self *Installation) NoInteraction() bool {
 // The function returns the following values:
 //
 //   - file: #GFile.
+//
 func (self *Installation) Path() *gio.File {
 	var _arg0 *C.FlatpakInstallation // out
 	var _cret *C.GFile               // in
@@ -1406,6 +1430,7 @@ func (self *Installation) Path() *gio.File {
 // The function returns the following values:
 //
 //   - gint: integer with the configured priority value.
+//
 func (self *Installation) Priority() int {
 	var _arg0 *C.FlatpakInstallation // out
 	var _cret C.gint                 // in
@@ -1432,6 +1457,7 @@ func (self *Installation) Priority() int {
 // The function returns the following values:
 //
 //   - remote instance, or NULL with error set.
+//
 func (self *Installation) RemoteByName(ctx context.Context, name string) (*Remote, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg2 *C.GCancellable        // out
@@ -1469,6 +1495,7 @@ func (self *Installation) RemoteByName(ctx context.Context, name string) (*Remot
 // The function returns the following values:
 //
 //   - storageType: StorageType.
+//
 func (self *Installation) StorageType() StorageType {
 	var _arg0 *C.FlatpakInstallation // out
 	var _cret C.FlatpakStorageType   // in
@@ -1514,6 +1541,7 @@ func (self *Installation) StorageType() StorageType {
 // The function returns the following values:
 //
 //   - installedRef: ref for the newly installed app or NULL on failure.
+//
 func (self *Installation) Install(ctx context.Context, remoteName string, kind RefKind, name, arch, branch string, progress ProgressCallback) (*InstalledRef, error) {
 	var _arg0 *C.FlatpakInstallation    // out
 	var _arg8 *C.GCancellable           // out
@@ -1591,6 +1619,7 @@ func (self *Installation) Install(ctx context.Context, remoteName string, kind R
 // The function returns the following values:
 //
 //   - installedRef: ref for the newly installed app or NULL on failure.
+//
 func (self *Installation) InstallBundle(ctx context.Context, file gio.Filer, progress ProgressCallback) (*InstalledRef, error) {
 	var _arg0 *C.FlatpakInstallation    // out
 	var _arg4 *C.GCancellable           // out
@@ -1661,6 +1690,7 @@ func (self *Installation) InstallBundle(ctx context.Context, file gio.Filer, pro
 // The function returns the following values:
 //
 //   - installedRef: ref for the newly installed app or NULL on failure.
+//
 func (self *Installation) InstallFull(ctx context.Context, flags InstallFlags, remoteName string, kind RefKind, name, arch, branch string, subpaths []string, progress ProgressCallback) (*InstalledRef, error) {
 	var _arg0 *C.FlatpakInstallation    // out
 	var _arg10 *C.GCancellable          // out
@@ -1759,6 +1789,7 @@ func (self *Installation) InstallFull(ctx context.Context, flags InstallFlags, r
 // The function returns the following values:
 //
 //   - remoteRef if the remote has been added successfully, NULL on error.
+//
 func (self *Installation) InstallRefFile(ctx context.Context, refFileData *glib.Bytes) (*RemoteRef, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg2 *C.GCancellable        // out
@@ -1804,6 +1835,7 @@ func (self *Installation) InstallRefFile(ctx context.Context, refFileData *glib.
 //     architecture).
 //   - branch (optional): which branch of the application (default: "master").
 //   - commit (optional) of branch to launch.
+//
 func (self *Installation) Launch(ctx context.Context, name, arch, branch, commit string) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg5 *C.GCancellable        // out
@@ -1861,6 +1893,7 @@ func (self *Installation) Launch(ctx context.Context, name, arch, branch, commit
 // The function returns the following values:
 //
 //   - utf8 contents of the overrides files, or NULL if an error occurred.
+//
 func (self *Installation) LoadAppOverrides(ctx context.Context, appId string) (string, error) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg2 *C.GCancellable        // out
@@ -1900,6 +1933,7 @@ func (self *Installation) LoadAppOverrides(ctx context.Context, appId string) (s
 //
 //   - ctx (optional): #GCancellable.
 //   - remote: modified Remote.
+//
 func (self *Installation) ModifyRemote(ctx context.Context, remote *Remote) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg2 *C.GCancellable        // out
@@ -1934,6 +1968,7 @@ func (self *Installation) ModifyRemote(ctx context.Context, remote *Remote) erro
 // The function takes the following parameters:
 //
 //   - ctx (optional): #GCancellable.
+//
 func (self *Installation) PruneLocalRepo(ctx context.Context) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg1 *C.GCancellable        // out
@@ -1974,6 +2009,7 @@ func (self *Installation) PruneLocalRepo(ctx context.Context) error {
 //   - ctx (optional): #GCancellable.
 //   - remoteName: name of the remote.
 //   - ref: ref.
+//
 func (self *Installation) RemoveLocalRefSync(ctx context.Context, remoteName, ref string) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg3 *C.GCancellable        // out
@@ -2013,6 +2049,7 @@ func (self *Installation) RemoveLocalRefSync(ctx context.Context, remoteName, re
 //
 //   - ctx (optional): #GCancellable.
 //   - name of the remote to remove.
+//
 func (self *Installation) RemoveRemote(ctx context.Context, name string) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg2 *C.GCancellable        // out
@@ -2051,6 +2088,7 @@ func (self *Installation) RemoveRemote(ctx context.Context, name string) error {
 // The function takes the following parameters:
 //
 //   - ctx (optional): #GCancellable.
+//
 func (self *Installation) RunTriggers(ctx context.Context) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg1 *C.GCancellable        // out
@@ -2087,6 +2125,7 @@ func (self *Installation) RunTriggers(ctx context.Context) error {
 //   - ctx (optional): #GCancellable.
 //   - key: name of the key to set.
 //   - value: new value, or NULL to unset.
+//
 func (self *Installation) SetConfigSync(ctx context.Context, key, value string) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg3 *C.GCancellable        // out
@@ -2130,6 +2169,7 @@ func (self *Installation) SetConfigSync(ctx context.Context, key, value string) 
 //
 //   - noInteraction: whether to disallow interactive authorization for
 //     operations.
+//
 func (self *Installation) SetNoInteraction(noInteraction bool) {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg1 C.gboolean             // out
@@ -2162,6 +2202,7 @@ func (self *Installation) SetNoInteraction(noInteraction bool) {
 //   - branch (optional): name of the branch of the app or runtime to uninstall;
 //     if NULL, master is assumed.
 //   - progress (optional): callback.
+//
 func (self *Installation) Uninstall(ctx context.Context, kind RefKind, name, arch, branch string, progress ProgressCallback) error {
 	var _arg0 *C.FlatpakInstallation    // out
 	var _arg7 *C.GCancellable           // out
@@ -2233,6 +2274,7 @@ func (self *Installation) Uninstall(ctx context.Context, kind RefKind, name, arc
 //   - branch (optional): name of the branch of the app or runtime to uninstall;
 //     if NULL, master is assumed.
 //   - progress (optional): callback.
+//
 func (self *Installation) UninstallFull(ctx context.Context, flags UninstallFlags, kind RefKind, name, arch, branch string, progress ProgressCallback) error {
 	var _arg0 *C.FlatpakInstallation    // out
 	var _arg8 *C.GCancellable           // out
@@ -2317,6 +2359,7 @@ func (self *Installation) UninstallFull(ctx context.Context, flags UninstallFlag
 // The function returns the following values:
 //
 //   - installedRef: ref for the newly updated app or NULL on failure.
+//
 func (self *Installation) Update(ctx context.Context, flags UpdateFlags, kind RefKind, name, arch, branch string, progress ProgressCallback) (*InstalledRef, error) {
 	var _arg0 *C.FlatpakInstallation    // out
 	var _arg8 *C.GCancellable           // out
@@ -2405,6 +2448,7 @@ func (self *Installation) Update(ctx context.Context, flags UpdateFlags, kind Re
 // The function returns the following values:
 //
 //   - installedRef: ref for the newly updated app or NULL on failure.
+//
 func (self *Installation) UpdateFull(ctx context.Context, flags UpdateFlags, kind RefKind, name, arch, branch string, subpaths []string, progress ProgressCallback) (*InstalledRef, error) {
 	var _arg0 *C.FlatpakInstallation    // out
 	var _arg9 *C.GCancellable           // out
@@ -2486,6 +2530,7 @@ func (self *Installation) UpdateFull(ctx context.Context, flags UpdateFlags, kin
 //
 //   - ctx (optional): #GCancellable.
 //   - name of the remote to update.
+//
 func (self *Installation) UpdateRemoteSync(ctx context.Context, name string) error {
 	var _arg0 *C.FlatpakInstallation // out
 	var _arg2 *C.GCancellable        // out

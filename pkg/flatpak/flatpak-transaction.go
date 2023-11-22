@@ -117,6 +117,7 @@ func (t TransactionOperationType) String() string {
 // The function returns the following values:
 //
 //   - utf8: string representing kind.
+//
 func TransactionOperationTypeToString(kind TransactionOperationType) string {
 	var _arg1 C.FlatpakTransactionOperationType // out
 	var _cret *C.char                           // in
@@ -1130,6 +1131,7 @@ func (self *Transaction) ConnectWebflowStart(f func(remote, url string, options 
 // The function returns the following values:
 //
 //   - transaction or NULL on failure.
+//
 func NewTransactionForInstallation(ctx context.Context, installation *Installation) (*Transaction, error) {
 	var _arg2 *C.GCancellable        // out
 	var _arg1 *C.FlatpakInstallation // out
@@ -1169,6 +1171,7 @@ func NewTransactionForInstallation(ctx context.Context, installation *Installati
 // The function takes the following parameters:
 //
 //   - id: webflow id, as passed into the webflow-start signal.
+//
 func (self *Transaction) AbortWebflow(id uint) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.guint               // out
@@ -1205,6 +1208,7 @@ func (self *Transaction) AddDefaultDependencySources() {
 // The function takes the following parameters:
 //
 //   - installation: Installation.
+//
 func (self *Transaction) AddDependencySource(installation *Installation) {
 	var _arg0 *C.FlatpakTransaction  // out
 	var _arg1 *C.FlatpakInstallation // out
@@ -1229,6 +1233,7 @@ func (self *Transaction) AddDependencySource(installation *Installation) {
 //   - ref: ref.
 //   - subpaths (optional) to install, or the empty list or NULL to pull all
 //     subpaths.
+//
 func (self *Transaction) AddInstall(remote, ref string, subpaths []string) error {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 *C.char               // out
@@ -1277,6 +1282,7 @@ func (self *Transaction) AddInstall(remote, ref string, subpaths []string) error
 //   - file that is an flatpak bundle.
 //   - gpgData (optional): GPG key with which to check bundle signatures,
 //     or NULL to use the key embedded in the bundle (if any).
+//
 func (self *Transaction) AddInstallBundle(file gio.Filer, gpgData *glib.Bytes) error {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 *C.GFile              // out
@@ -1309,6 +1315,7 @@ func (self *Transaction) AddInstallBundle(file gio.Filer, gpgData *glib.Bytes) e
 // The function takes the following parameters:
 //
 //   - flatpakrefData: data from a flatpakref file.
+//
 func (self *Transaction) AddInstallFlatpakref(flatpakrefData *glib.Bytes) error {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 *C.GBytes             // out
@@ -1338,6 +1345,7 @@ func (self *Transaction) AddInstallFlatpakref(flatpakrefData *glib.Bytes) error 
 // The function takes the following parameters:
 //
 //   - path to a local flatpak repository.
+//
 func (self *Transaction) AddSideloadRepo(path string) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 *C.char               // out
@@ -1357,6 +1365,7 @@ func (self *Transaction) AddSideloadRepo(path string) {
 // The function takes the following parameters:
 //
 //   - ref: ref.
+//
 func (self *Transaction) AddUninstall(ref string) error {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 *C.char               // out
@@ -1388,6 +1397,7 @@ func (self *Transaction) AddUninstall(ref string) error {
 //     set of configured languages, or { NULL } or { "", NULL } to pull all
 //     subpaths.
 //   - commit (optional) to update to, or NULL to use the latest.
+//
 func (self *Transaction) AddUpdate(ref string, subpaths []string, commit string) error {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 *C.char               // out
@@ -1439,6 +1449,7 @@ func (self *Transaction) AddUpdate(ref string, subpaths []string, commit string)
 //   - user name, or NULL if aborting request.
 //   - password: password.
 //   - options: extra a{sv] variant with options (or NULL), currently unused.
+//
 func (self *Transaction) CompleteBasicAuth(id uint, user, password string, options *glib.Variant) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.guint               // out
@@ -1468,6 +1479,7 @@ func (self *Transaction) CompleteBasicAuth(id uint, user, password string, optio
 // The function returns the following values:
 //
 //   - ok: TRUE if auto_install_debug is set, FALSE otherwise.
+//
 func (self *Transaction) AutoInstallDebug() bool {
 	var _arg0 *C.FlatpakTransaction // out
 	var _cret C.gboolean            // in
@@ -1492,6 +1504,7 @@ func (self *Transaction) AutoInstallDebug() bool {
 // The function returns the following values:
 //
 //   - ok: TRUE if auto_install_sdk is set, FALSE otherwise.
+//
 func (self *Transaction) AutoInstallSdk() bool {
 	var _arg0 *C.FlatpakTransaction // out
 	var _cret C.gboolean            // in
@@ -1515,6 +1528,7 @@ func (self *Transaction) AutoInstallSdk() bool {
 // The function returns the following values:
 //
 //   - transactionOperation: current TransactionOperation.
+//
 func (self *Transaction) CurrentOperation() *TransactionOperation {
 	var _arg0 *C.FlatpakTransaction          // out
 	var _cret *C.FlatpakTransactionOperation // in
@@ -1537,6 +1551,7 @@ func (self *Transaction) CurrentOperation() *TransactionOperation {
 // The function returns the following values:
 //
 //   - ok: TRUE if include_unused_uninstall_ops is set, FALSE otherwise.
+//
 func (self *Transaction) IncludeUnusedUninstallOps() bool {
 	var _arg0 *C.FlatpakTransaction // out
 	var _cret C.gboolean            // in
@@ -1560,6 +1575,7 @@ func (self *Transaction) IncludeUnusedUninstallOps() bool {
 // The function returns the following values:
 //
 //   - installation: Installation.
+//
 func (self *Transaction) Installation() *Installation {
 	var _arg0 *C.FlatpakTransaction  // out
 	var _cret *C.FlatpakInstallation // in
@@ -1582,6 +1598,7 @@ func (self *Transaction) Installation() *Installation {
 // The function returns the following values:
 //
 //   - ok: TRUE if no_deploy is set, FALSE otherwise.
+//
 func (self *Transaction) NoDeploy() bool {
 	var _arg0 *C.FlatpakTransaction // out
 	var _cret C.gboolean            // in
@@ -1606,6 +1623,7 @@ func (self *Transaction) NoDeploy() bool {
 // The function returns the following values:
 //
 //   - ok: TRUE if the transaction is not interactive, FALSE otherwise.
+//
 func (self *Transaction) NoInteraction() bool {
 	var _arg0 *C.FlatpakTransaction // out
 	var _cret C.gboolean            // in
@@ -1630,6 +1648,7 @@ func (self *Transaction) NoInteraction() bool {
 // The function returns the following values:
 //
 //   - ok: TRUE if no_pull is set, FALSE otherwise.
+//
 func (self *Transaction) NoPull() bool {
 	var _arg0 *C.FlatpakTransaction // out
 	var _cret C.gboolean            // in
@@ -1654,6 +1673,7 @@ func (self *Transaction) NoPull() bool {
 // The function returns the following values:
 //
 //   - list of operations.
+//
 func (self *Transaction) Operations() []*TransactionOperation {
 	var _arg0 *C.FlatpakTransaction // out
 	var _cret *C.GList              // in
@@ -1682,6 +1702,7 @@ func (self *Transaction) Operations() []*TransactionOperation {
 // The function returns the following values:
 //
 //   - utf8: window name, or NULL.
+//
 func (self *Transaction) ParentWindow() string {
 	var _arg0 *C.FlatpakTransaction // out
 	var _cret *C.char               // in
@@ -1703,6 +1724,7 @@ func (self *Transaction) ParentWindow() string {
 // The function returns the following values:
 //
 //   - ok: TRUE if the transaction is empty.
+//
 func (self *Transaction) IsEmpty() bool {
 	var _arg0 *C.FlatpakTransaction // out
 	var _cret C.gboolean            // in
@@ -1736,6 +1758,7 @@ func (self *Transaction) IsEmpty() bool {
 // The function takes the following parameters:
 //
 //   - ctx (optional): #GCancellable.
+//
 func (transaction *Transaction) Run(ctx context.Context) error {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 *C.GCancellable       // out
@@ -1768,6 +1791,7 @@ func (transaction *Transaction) Run(ctx context.Context) error {
 // The function takes the following parameters:
 //
 //   - autoInstallDebug: whether to auto install debug info for apps.
+//
 func (self *Transaction) SetAutoInstallDebug(autoInstallDebug bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -1789,6 +1813,7 @@ func (self *Transaction) SetAutoInstallDebug(autoInstallDebug bool) {
 // The function takes the following parameters:
 //
 //   - autoInstallSdk: whether to auto install SDKs for apps.
+//
 func (self *Transaction) SetAutoInstallSdk(autoInstallSdk bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -1808,6 +1833,7 @@ func (self *Transaction) SetAutoInstallSdk(autoInstallSdk bool) {
 // The function takes the following parameters:
 //
 //   - arch to make default.
+//
 func (self *Transaction) SetDefaultArch(arch string) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 *C.char               // out
@@ -1828,6 +1854,7 @@ func (self *Transaction) SetDefaultArch(arch string) {
 // The function takes the following parameters:
 //
 //   - disablePin: whether to disable auto-pinning.
+//
 func (self *Transaction) SetDisableAutoPIN(disablePin bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -1848,6 +1875,7 @@ func (self *Transaction) SetDisableAutoPIN(disablePin bool) {
 // The function takes the following parameters:
 //
 //   - disableDependencies: whether to disable runtime dependencies.
+//
 func (self *Transaction) SetDisableDependencies(disableDependencies bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -1868,6 +1896,7 @@ func (self *Transaction) SetDisableDependencies(disableDependencies bool) {
 // The function takes the following parameters:
 //
 //   - disablePrune: whether to avoid pruning.
+//
 func (self *Transaction) SetDisablePrune(disablePrune bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -1889,6 +1918,7 @@ func (self *Transaction) SetDisablePrune(disablePrune bool) {
 // The function takes the following parameters:
 //
 //   - disableRelated: whether to avoid adding related refs.
+//
 func (self *Transaction) SetDisableRelated(disableRelated bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -1909,6 +1939,7 @@ func (self *Transaction) SetDisableRelated(disableRelated bool) {
 // The function takes the following parameters:
 //
 //   - disableStaticDeltas: whether to avoid static deltas.
+//
 func (self *Transaction) SetDisableStaticDeltas(disableStaticDeltas bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -1929,6 +1960,7 @@ func (self *Transaction) SetDisableStaticDeltas(disableStaticDeltas bool) {
 // The function takes the following parameters:
 //
 //   - forceUninstall: whether to force-uninstall refs.
+//
 func (self *Transaction) SetForceUninstall(forceUninstall bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -1956,6 +1988,7 @@ func (self *Transaction) SetForceUninstall(forceUninstall bool) {
 // The function takes the following parameters:
 //
 //   - includeUnusedUninstallOps: whether to include unused uninstall ops.
+//
 func (self *Transaction) SetIncludeUnusedUninstallOps(includeUnusedUninstallOps bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -1976,6 +2009,7 @@ func (self *Transaction) SetIncludeUnusedUninstallOps(includeUnusedUninstallOps 
 // The function takes the following parameters:
 //
 //   - noDeploy: whether to avoid deploying.
+//
 func (self *Transaction) SetNoDeploy(noDeploy bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -2000,6 +2034,7 @@ func (self *Transaction) SetNoDeploy(noDeploy bool) {
 //
 //   - noInteraction: whether to disallow interactive authorization for
 //     operations.
+//
 func (self *Transaction) SetNoInteraction(noInteraction bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -2020,6 +2055,7 @@ func (self *Transaction) SetNoInteraction(noInteraction bool) {
 // The function takes the following parameters:
 //
 //   - noPull: whether to avoid pulls.
+//
 func (self *Transaction) SetNoPull(noPull bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -2050,6 +2086,7 @@ func (self *Transaction) SetNoPull(noPull bool) {
 // The function takes the following parameters:
 //
 //   - parentWindow: whether to avoid pulls.
+//
 func (self *Transaction) SetParentWindow(parentWindow string) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 *C.char               // out
@@ -2069,6 +2106,7 @@ func (self *Transaction) SetParentWindow(parentWindow string) {
 // The function takes the following parameters:
 //
 //   - reinstall: whether to reinstall refs.
+//
 func (self *Transaction) SetReinstall(reinstall bool) {
 	var _arg0 *C.FlatpakTransaction // out
 	var _arg1 C.gboolean            // out
@@ -2119,6 +2157,7 @@ func marshalTransactionOperation(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - file: bundle #GFile or NULL.
+//
 func (self *TransactionOperation) BundlePath() *gio.File {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret *C.GFile                       // in
@@ -2148,6 +2187,7 @@ func (self *TransactionOperation) BundlePath() *gio.File {
 // The function returns the following values:
 //
 //   - utf8: commit ID.
+//
 func (self *TransactionOperation) Commit() string {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret *C.char                        // in
@@ -2177,6 +2217,7 @@ func (self *TransactionOperation) Commit() string {
 // The function returns the following values:
 //
 //   - guint64: download size, in bytes.
+//
 func (self *TransactionOperation) DownloadSize() uint64 {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret C.guint64                      // in
@@ -2206,6 +2247,7 @@ func (self *TransactionOperation) DownloadSize() uint64 {
 // The function returns the following values:
 //
 //   - guint64: installed size, in bytes.
+//
 func (self *TransactionOperation) InstalledSize() uint64 {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret C.guint64                      // in
@@ -2233,6 +2275,7 @@ func (self *TransactionOperation) InstalledSize() uint64 {
 // The function returns the following values:
 //
 //   - ok: TRUE if the operation has been marked as to skip, FALSE otherwise.
+//
 func (self *TransactionOperation) IsSkipped() bool {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret C.gboolean                     // in
@@ -2264,6 +2307,7 @@ func (self *TransactionOperation) IsSkipped() bool {
 // The function returns the following values:
 //
 //   - keyFile: metadata File.
+//
 func (self *TransactionOperation) Metadata() *glib.KeyFile {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret *C.GKeyFile                    // in
@@ -2289,6 +2333,7 @@ func (self *TransactionOperation) Metadata() *glib.KeyFile {
 // The function returns the following values:
 //
 //   - keyFile: old metadata File.
+//
 func (self *TransactionOperation) OldMetadata() *glib.KeyFile {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret *C.GKeyFile                    // in
@@ -2310,6 +2355,7 @@ func (self *TransactionOperation) OldMetadata() *glib.KeyFile {
 // The function returns the following values:
 //
 //   - transactionOperationType: type of operation, as TransactionOperationType.
+//
 func (self *TransactionOperation) OperationType() TransactionOperationType {
 	var _arg0 *C.FlatpakTransactionOperation    // out
 	var _cret C.FlatpakTransactionOperationType // in
@@ -2331,6 +2377,7 @@ func (self *TransactionOperation) OperationType() TransactionOperationType {
 // The function returns the following values:
 //
 //   - utf8: remote.
+//
 func (self *TransactionOperation) Remote() string {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret *C.char                        // in
@@ -2354,6 +2401,7 @@ func (self *TransactionOperation) Remote() string {
 // The function returns the following values:
 //
 //   - ok: whether self requires authentication.
+//
 func (self *TransactionOperation) RequiresAuthentication() bool {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret C.gboolean                     // in
@@ -2389,6 +2437,7 @@ func (self *TransactionOperation) RequiresAuthentication() bool {
 // The function returns the following values:
 //
 //   - utf8s: set of subpaths that will be pulled, or NULL if no subsetting.
+//
 func (self *TransactionOperation) Subpaths() []string {
 	var _arg0 *C.FlatpakTransactionOperation // out
 	var _cret **C.char                       // in
@@ -2475,6 +2524,7 @@ func (self *TransactionProgress) ConnectChanged(f func()) externglib.SignalHandl
 // The function returns the following values:
 //
 //   - guint64: number of bytes transferred.
+//
 func (self *TransactionProgress) BytesTransferred() uint64 {
 	var _arg0 *C.FlatpakTransactionProgress // out
 	var _cret C.guint64                     // in
@@ -2496,6 +2546,7 @@ func (self *TransactionProgress) BytesTransferred() uint64 {
 // The function returns the following values:
 //
 //   - ok: whether we're estimating.
+//
 func (self *TransactionProgress) IsEstimating() bool {
 	var _arg0 *C.FlatpakTransactionProgress // out
 	var _cret C.gboolean                    // in
@@ -2519,6 +2570,7 @@ func (self *TransactionProgress) IsEstimating() bool {
 // The function returns the following values:
 //
 //   - gint: current progress, as an integer between 0 and 100.
+//
 func (self *TransactionProgress) Progress() int {
 	var _arg0 *C.FlatpakTransactionProgress // out
 	var _cret C.int                         // in
@@ -2541,6 +2593,7 @@ func (self *TransactionProgress) Progress() int {
 // The function returns the following values:
 //
 //   - guint64: start time.
+//
 func (self *TransactionProgress) StartTime() uint64 {
 	var _arg0 *C.FlatpakTransactionProgress // out
 	var _cret C.guint64                     // in
@@ -2562,6 +2615,7 @@ func (self *TransactionProgress) StartTime() uint64 {
 // The function returns the following values:
 //
 //   - utf8: current status.
+//
 func (self *TransactionProgress) Status() string {
 	var _arg0 *C.FlatpakTransactionProgress // out
 	var _cret *C.char                       // in
@@ -2584,6 +2638,7 @@ func (self *TransactionProgress) Status() string {
 // The function takes the following parameters:
 //
 //   - updateInterval: update interval, in milliseconds.
+//
 func (self *TransactionProgress) SetUpdateFrequency(updateInterval uint) {
 	var _arg0 *C.FlatpakTransactionProgress // out
 	var _arg1 C.guint                       // out

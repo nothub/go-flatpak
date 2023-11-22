@@ -92,6 +92,7 @@ func marshalRef(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - utf8: string representation.
+//
 func (self *Ref) FormatRefCached() string {
 	var _arg0 *C.FlatpakRef // out
 	var _cret *C.char       // in
@@ -113,6 +114,7 @@ func (self *Ref) FormatRefCached() string {
 // The function returns the following values:
 //
 //   - utf8: arch.
+//
 func (self *Ref) Arch() string {
 	var _arg0 *C.FlatpakRef // out
 	var _cret *C.char       // in
@@ -134,6 +136,7 @@ func (self *Ref) Arch() string {
 // The function returns the following values:
 //
 //   - utf8: branch.
+//
 func (self *Ref) Branch() string {
 	var _arg0 *C.FlatpakRef // out
 	var _cret *C.char       // in
@@ -155,6 +158,7 @@ func (self *Ref) Branch() string {
 // The function returns the following values:
 //
 //   - utf8: collection ID.
+//
 func (self *Ref) CollectionID() string {
 	var _arg0 *C.FlatpakRef // out
 	var _cret *C.char       // in
@@ -176,6 +180,7 @@ func (self *Ref) CollectionID() string {
 // The function returns the following values:
 //
 //   - utf8: commit.
+//
 func (self *Ref) Commit() string {
 	var _arg0 *C.FlatpakRef // out
 	var _cret *C.char       // in
@@ -197,6 +202,7 @@ func (self *Ref) Commit() string {
 // The function returns the following values:
 //
 //   - refKind: kind of artifact.
+//
 func (self *Ref) Kind() RefKind {
 	var _arg0 *C.FlatpakRef    // out
 	var _cret C.FlatpakRefKind // in
@@ -218,6 +224,7 @@ func (self *Ref) Kind() RefKind {
 // The function returns the following values:
 //
 //   - utf8: name.
+//
 func (self *Ref) Name() string {
 	var _arg0 *C.FlatpakRef // out
 	var _cret *C.char       // in
@@ -244,6 +251,7 @@ func (self *Ref) Name() string {
 // The function returns the following values:
 //
 //   - ret or NULL.
+//
 func RefParse(ref string) (*Ref, error) {
 	var _arg1 *C.char       // out
 	var _cret *C.FlatpakRef // in

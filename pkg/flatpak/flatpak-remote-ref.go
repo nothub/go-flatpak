@@ -63,6 +63,7 @@ func marshalRemoteRef(p uintptr) (interface{}, error) {
 // The function returns the following values:
 //
 //   - guint64: download size.
+//
 func (self *RemoteRef) DownloadSize() uint64 {
 	var _arg0 *C.FlatpakRemoteRef // out
 	var _cret C.guint64           // in
@@ -85,6 +86,7 @@ func (self *RemoteRef) DownloadSize() uint64 {
 // The function returns the following values:
 //
 //   - utf8: end-of-life reason or NULL.
+//
 func (self *RemoteRef) Eol() string {
 	var _arg0 *C.FlatpakRemoteRef // out
 	var _cret *C.char             // in
@@ -107,6 +109,7 @@ func (self *RemoteRef) Eol() string {
 // The function returns the following values:
 //
 //   - utf8: end-of-life rebased ref or NULL.
+//
 func (self *RemoteRef) EolRebase() string {
 	var _arg0 *C.FlatpakRemoteRef // out
 	var _cret *C.char             // in
@@ -128,6 +131,7 @@ func (self *RemoteRef) EolRebase() string {
 // The function returns the following values:
 //
 //   - guint64: installed size.
+//
 func (self *RemoteRef) InstalledSize() uint64 {
 	var _arg0 *C.FlatpakRemoteRef // out
 	var _cret C.guint64           // in
@@ -149,6 +153,7 @@ func (self *RemoteRef) InstalledSize() uint64 {
 // The function returns the following values:
 //
 //   - bytes (optional) with the metadata file contents or NULL.
+//
 func (self *RemoteRef) Metadata() *glib.Bytes {
 	var _arg0 *C.FlatpakRemoteRef // out
 	var _cret *C.GBytes           // in
@@ -179,6 +184,7 @@ func (self *RemoteRef) Metadata() *glib.Bytes {
 // The function returns the following values:
 //
 //   - utf8: remote name.
+//
 func (self *RemoteRef) RemoteName() string {
 	var _arg0 *C.FlatpakRemoteRef // out
 	var _cret *C.char             // in

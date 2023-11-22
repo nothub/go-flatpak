@@ -8,8 +8,8 @@ import (
 	"os"
 
 	"github.com/diamondburned/gotk4/gir"
-	"github.com/diamondburned/gotk4/gir/cmd/gir_generate/gendata"
-	"github.com/diamondburned/gotk4/gir/cmd/gir_generate/genutil"
+	"github.com/diamondburned/gotk4/gir/cmd/gir-generate/gendata"
+	genutil "github.com/diamondburned/gotk4/gir/cmd/gir-generate/genmain"
 	"github.com/diamondburned/gotk4/gir/girgen"
 )
 

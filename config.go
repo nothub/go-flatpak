@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/diamondburned/gotk4/gir/cmd/gir_generate/gendata"
+	"github.com/diamondburned/gotk4/gir/cmd/gir-generate/gendata"
 	"github.com/diamondburned/gotk4/gir/girgen/types"
 )
 

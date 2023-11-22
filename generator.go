@@ -63,7 +63,15 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err := genutil.EnsureDirectory(output, pkgExceptions, pkgGenerated); err != nil {
+	var excepts []string
+	excepts = append(excepts, pkgExceptions...)
+	excepts = append(excepts, pkgGenerated...)
+
+	if err := genutil.CleanDirectory(output, excepts); err != nil {
+		log.Fatalln("error cleaning generation:", err)
+	}
+
+	if err := genutil.EnsureDirectory(output, excepts); err != nil {
 		log.Fatalln("error verifying generation:", err)
 	}
 }

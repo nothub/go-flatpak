@@ -1,16 +1,14 @@
-user = $(shell whoami)
-
 .PHONY: all generate permissions docker docker-image docker-generate
 
 all: generate permissions
+
+docker: docker-image docker-generate permissions
 
 generate:
 	sudo go generate -run go run . -o ./pkg/
 
 permissions:
-	sudo chown -R $(user):$(user) pkg
-
-docker: docker-image docker-generate permissions
+	sudo chown -R $(shell id -u):$(shell id -g) pkg
 
 docker-image:
 	docker build --progress "plain" -t "go-flatpak-builder" $(CURDIR)

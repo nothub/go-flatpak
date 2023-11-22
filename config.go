@@ -7,7 +7,7 @@ import (
 
 const (
 	gotk4Module = "github.com/diamondburned/gotk4/pkg"
-	thisModule  = "github.com/erazemk/go-flatpak/pkg"
+	thisModule  = "github.com/nothub/goflatpak/pkg"
 )
 
 var packages = []gendata.Package{

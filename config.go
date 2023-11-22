@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/diamondburned/gotk4/gir/cmd/gir-generate/genmain"
+	"github.com/diamondburned/gotk4/gir/cmd/gir_generate/gendata"
 	"github.com/diamondburned/gotk4/gir/girgen/types"
 )
 
@@ -10,8 +10,8 @@ const (
 	thisModule  = "github.com/nothub/goflatpak/pkg"
 )
 
-var packages = []genmain.Package{
-	{Name: "gdk-pixbuf-2.0", Namespaces: []string{"Flatpak-1"}},
+var packages = []gendata.Package{
+	{PkgName: "gdk-pixbuf-2.0", Namespaces: []string{"Flatpak-1"}},
 }
 
 var pkgGenerated = []string{

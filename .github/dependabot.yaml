@@ -9,7 +9,7 @@ updates:
       - "nothub"
 
   - package-ecosystem: "gomod"
-    directory: "/pgk/"
+    directory: "/pkg/"
     schedule:
       interval: "daily"
     assignees:

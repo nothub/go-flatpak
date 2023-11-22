@@ -1,5 +1,7 @@
 user = $(shell whoami)
 
+.PHONY: all generate permissions docker docker-image docker-generate
+
 all: generate permissions
 
 generate:

@@ -1,6 +1,7 @@
 package main
 
 //go:generate go run .
+//go:generate go fmt ./...
 
 import (
 	"flag"

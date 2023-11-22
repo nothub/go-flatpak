@@ -21,6 +21,7 @@ var pkgGenerated = []string{
 var pkgExceptions = []string{
 	"go.mod",
 	"go.sum",
+	"LICENSE",
 }
 
 var preprocessors []types.Preprocessor

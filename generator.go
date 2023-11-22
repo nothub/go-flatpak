@@ -1,6 +1,6 @@
 package main
 
-//go:generate go run . -o ./pkg/
+//go:generate go run . -out pkg
 
 import (
 	"flag"
@@ -19,12 +19,12 @@ var (
 )
 
 func init() {
-	flag.StringVar(&output, "o", "", "output directory to mkdir in")
-	flag.BoolVar(&listPkg, "l", listPkg, "only list packages and exit")
+	flag.StringVar(&output, "out", "", "output directory to mkdir in")
+	flag.BoolVar(&listPkg, "ls", listPkg, "only list packages and exit")
 	flag.Parse()
 
 	if !listPkg && output == "" {
-		log.Fatalln("Missing -o output directory.")
+		log.Fatalln("Missing -out output directory.")
 	}
 }
 

@@ -5,7 +5,7 @@ all: generate permissions
 docker: docker-image docker-generate permissions
 
 generate:
-	sudo go generate -run go run . -o ./pkg/
+	sudo go generate -run go run . -out ./pkg/
 
 permissions:
 	sudo chown -R $(shell id -u):$(shell id -g) pkg

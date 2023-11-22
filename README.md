@@ -18,3 +18,16 @@ sudo "$(which go)" generate
 # Restore directory ownership (since running as root is required to walk /usr/)
 sudo chown -R "$(id -u):$(id -g)" pkg
 ```
+
+### Docker
+
+```shell
+# Build builder image
+docker build --progress "plain" -t "go-flatpak-builder" .
+
+# Generate library
+docker run -it --rm -v "${PWD}:/work" "go-flatpak-builder" /usr/lib/go-1.19/bin/go generate
+
+# Restore directory ownership
+sudo chown -R "$(id -u):$(id -g)" .
+```

@@ -13,8 +13,10 @@ sudo dnf install -y atk-devel flatpak-devel gobject-introspection-devel gtk3-dev
 sudo apt install -y libatk1.0-dev libflatpak-dev gobject-introspection libgtk-3-dev libgtk-4-dev
 
 # Generate library
-sudo go generate -run go run . -o ./pkg/
+gobin="$(which go)"
+sudo "$gobin" generate -run go run . -o ./pkg/
 
 # Restore directory ownership (since running as root is required to walk /usr/)
-sudo chown -R <user>:<user> pkg
+ids="$(id -u):$(id -g)"
+sudo chown -R "$ids" pkg
 ```
